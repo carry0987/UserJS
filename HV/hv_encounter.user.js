@@ -121,6 +121,7 @@ function getElem(ele, mode, parent) {
 
 //Check date
 (function() {
+    if (getElem('#battle_main')) return;
     checkNew();
     function checkNew() {
         setInterval(function() {
