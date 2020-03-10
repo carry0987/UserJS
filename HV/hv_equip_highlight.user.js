@@ -6,7 +6,8 @@
 // @version      1.2.8
 // @description  People always discern the color first, then to see word
 // @icon         https://e-hentai.org/favicon.ico
-// @include      http*://hentaiverse.org/*
+// @include      https://hentaiverse.org/*
+// @include      http://hentaiverse.org/*
 // @include      http*://alt.hentaiverse.org/*
 // @match        https://forums.e-hentai.org/*
 // @match        http://forums.e-hentai.org/*
