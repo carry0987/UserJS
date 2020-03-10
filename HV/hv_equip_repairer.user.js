@@ -3,7 +3,7 @@
 // @author       carry0987
 // @namespace    https://github.com/carry0987
 // @support      https://github.com/carry0987/UserJS/issues
-// @version      1.1.5
+// @version      1.2.0
 // @description  Repair equipments automatically
 // @icon         https://carry0987.github.io/favicon.png
 // @include      http*://hentaiverse.org/?s=Forge&ss=re*
@@ -52,7 +52,12 @@
     var getBox = document.getElementById('auto_buy')
     if (getBox) {
         getBox.onclick = function() {
-            repairEqupiment(material)
+            var confirm_purchase = confirm('Total Cost: '+getTotalCost(material))
+            if (confirm_purchase == true) {
+                repairEqupiment(material)
+            } else {
+                return
+            }
         }
     }
 })()
@@ -104,10 +109,24 @@ function repairEqupiment(material) {
             }
             setTimeout(function() {
                 document.querySelector('#repairall div').click()
-            }, 3000)
+            }, 1000)
         }
     }
     xhr.send(null)
+}
+
+//Get total cost of material
+function getTotalCost(material) {
+    var materialsList = document.querySelectorAll('#repairall+div span')
+    var total = 0
+    if (materialsList.length > 0) {
+        for (var i = 0; i < materialsList.length; i++) {
+            var amount = materialsList[i].innerHTML.match(/\d+/)[0]
+            var code = material[materialsName2Code(materialsList[i].innerHTML.match(/\d+x (.*)/)[1])].code
+            total += amount*material[i].cost
+        }
+    }
+    return total
 }
 
 //Get element
