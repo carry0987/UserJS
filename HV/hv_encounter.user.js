@@ -3,7 +3,7 @@
 // @author       carry0987
 // @namespace    https://github.com/carry0987
 // @support      https://github.com/carry0987/UserJS/issues
-// @version      1.5.0
+// @version      1.5.1
 // @description  Auto report when encounter monster
 // @icon         https://carry0987.github.io/favicon.png
 // @match        https://exhentai.org/*
@@ -20,7 +20,7 @@ const DAY_MS = 86400 * 1e3;
 const DEBUG = false;
 const six_hr = 2.16e+7;
 const twelve_hr = 4.32e+7;
-var check_encounter = 60000;
+const check_encounter = 60000;
 
 class Cookie {
     constructor(cookie = document.cookie) {
