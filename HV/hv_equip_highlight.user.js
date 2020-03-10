@@ -3,7 +3,7 @@
 // @author       carry0987; ggxxsol(ggxxhy); hc br
 // @namespace    https://github.com/carry0987
 // @support      https://github.com/carry0987/UserJS/issues
-// @version      1.2.9
+// @version      1.2.8
 // @description  People always discern the color first, then to see word
 // @icon         https://e-hentai.org/favicon.ico
 // @include      http*://hentaiverse.org/*
