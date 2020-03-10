@@ -2,8 +2,9 @@
 // @name         HV Trainer
 // @author       carry0987
 // @namespace    https://github.com/carry0987
+// @support      https://github.com/carry0987/UserJS/issues
 // @version      1.4.6
-// @description  Upgrades the gallery favourite button to allow quick favouriting of a gallery
+// @description  Start training automatically and display process on top bar
 // @icon         https://carry0987.github.io/favicon.png
 // @include      http*://hentaiverse.org/*
 // @include      http*://alt.hentaiverse.org/*

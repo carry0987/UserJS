@@ -2,6 +2,7 @@
 // @name         EH Quick Favourite
 // @author       carry0987
 // @namespace    https://github.com/carry0987
+// @support      https://github.com/carry0987/UserJS/issues
 // @version      1.2.5
 // @description  Upgrades the gallery favourite button to allow quick favouriting of a gallery
 // @icon         https://carry0987.github.io/favicon.png

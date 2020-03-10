@@ -2,6 +2,7 @@
 // @name         EH Gallery Overview
 // @author       carry0987
 // @namespace    https://github.com/carry0987
+// @support      https://github.com/carry0987/UserJS/issues
 // @version      1.0.0
 // @description  Appends "Hath/GP Exchange" and "Credit Log" to "Overview" under the "My Home" tab
 // @icon         https://carry0987.github.io/favicon.png

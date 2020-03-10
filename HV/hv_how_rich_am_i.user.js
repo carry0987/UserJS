@@ -2,6 +2,7 @@
 // @name         HV How Rich Am I ?
 // @author       carry0987
 // @namespace    https://github.com/carry0987
+// @support      https://github.com/carry0987/UserJS/issues
 // @version      1.4.5
 // @description  Show how many Credits you have
 // @icon         https://carry0987.github.io/favicon.png

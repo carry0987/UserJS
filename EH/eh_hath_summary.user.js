@@ -2,6 +2,7 @@
 // @name         EH Hath Summary
 // @author       carry0987
 // @namespace    https://github.com/carry0987
+// @support      https://github.com/carry0987/UserJS/issues
 // @version      1.0.0
 // @description  Add extra summary table row on Hath page
 // @icon         https://carry0987.github.io/favicon.png

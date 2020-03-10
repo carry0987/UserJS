@@ -2,6 +2,7 @@
 // @name         HV Equipment Repairer
 // @author       carry0987
 // @namespace    https://github.com/carry0987
+// @support      https://github.com/carry0987/UserJS/issues
 // @version      1.1.5
 // @description  Repair equipments automatically
 // @icon         https://carry0987.github.io/favicon.png

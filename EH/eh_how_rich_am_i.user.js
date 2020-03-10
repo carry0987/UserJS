@@ -2,6 +2,7 @@
 // @name         EH How Rich Am I ?
 // @author       carry0987
 // @namespace    https://github.com/carry0987
+// @support      https://github.com/carry0987/UserJS/issues
 // @version      1.1.0
 // @description  Shows how many Credits/Hath/GP you have, and displays exchange rate of Hath under the Overview tab
 // @icon         https://carry0987.github.io/favicon.png

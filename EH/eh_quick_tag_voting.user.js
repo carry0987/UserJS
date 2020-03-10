@@ -2,6 +2,7 @@
 // @name         EH Gallery Quick Tag Voting
 // @author       carry0987
 // @namespace    https://github.com/carry0987
+// @support      https://github.com/carry0987/UserJS/issues
 // @version      1.2.0
 // @description  Adds upvote and downvote button on the left and right sides of tags in EH Gallery to allow faster and easier tag voting
 // @icon         https://carry0987.github.io/favicon.png
