@@ -13,7 +13,7 @@
 
 (function() {
     if (!getElem('#navbar')) return
-    var countdownBox = getElem('body>#csp>#navbar>div:nth-child(5)>div').appendChild(createElem('a'))
+    var countdownBox = getElem('body>#csp>#navbar>div:nth-child(5)>div').appendChild(createElem('a', 'trainer'))
     countdownBox.href = '?s=Character&ss=tr'
     countdownBox.style.cssText = 'font-weight:bold;font-size:large;position:relative;bottom:21px;left:84px'
     //If you don't want to start training automatically, set it to false
@@ -152,11 +152,11 @@
 })()
 
 function setValue(item, value) {
-    window.localStorage[item] = (typeof value === 'string') ? value : JSON.stringify(value)
+    window.localStorage[item] = (typeof value === 'string') ? value : JSON.stringify(value);
 }
 
 function getValue(item, toJSON) {
-    return (window.localStorage[item]) ? ((toJSON) ? JSON.parse(window.localStorage[item]) : window.localStorage[item]) : null
+    return (window.localStorage[item]) ? ((toJSON) ? JSON.parse(window.localStorage[item]) : window.localStorage[item]) : null;
 }
 
 //Get element
@@ -173,8 +173,12 @@ function getElem(ele, mode, parent) {
 }
 
 //Create element
-function createElem(name) {
-    return document.createElement(name)
+function createElem(name, elemID = false) {
+    var elem = document.createElement(name);
+    if (elemID != false) {
+        elem.setAttribute('id', elemID);
+    }
+    return elem
 }
 
 //Post
