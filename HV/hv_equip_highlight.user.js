@@ -6,7 +6,7 @@
 // @version      1.2.9
 // @description  People always discern the color first, then to see word
 // @icon         https://e-hentai.org/favicon.ico
-// @include      https://hentaiverse.org/*
+// @include      http*://hentaiverse.org/*
 // @include      http*://alt.hentaiverse.org/*
 // @match        https://forums.e-hentai.org/*
 // @match        http://forums.e-hentai.org/*
@@ -29,7 +29,7 @@ var torep = new Array();
 var repby = new Array();
 
 function mainhh() {
-    if (getLocation.match('hentaiverse.org/equip/') || getLocation.match('hentaiverse.org/pages/showequip.php')) {
+    if (getLocation.match('://hentaiverse.org/equip/') || getLocation.match('://hentaiverse.org/pages/showequip.php')) {
         html = eqmthh(document.body);
         document.body.innerHTML = html;
         return
