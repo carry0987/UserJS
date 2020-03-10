@@ -30,9 +30,9 @@ const config = {
     'editor_size': 60, // Width of the favnotes input element in not-px unit
     'hotkeys': true, // Enable hotkeys
     'cheatsheet': false, // Show cheatsheet after pressing Shift+F
-    'favnote': false,
-    'archive_fav': true, // Auto add to default favourite while download archive
-    'default_fav': 3 // Default favourite sort [0-9]
+    'favnote': true,
+    'archive_fav': false, // Auto add to default favourite while download archive
+    'default_fav': 0 // Default favourite sort [0-9]
 };
 
 // Colors
