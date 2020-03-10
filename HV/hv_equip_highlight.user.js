@@ -3,7 +3,7 @@
 // @author       carry0987; ggxxsol(ggxxhy); hc br
 // @namespace    https://github.com/carry0987
 // @support      https://github.com/carry0987/UserJS/issues
-// @version      1.2.8
+// @version      1.2.9
 // @description  People always discern the color first, then to see word
 // @icon         https://e-hentai.org/favicon.ico
 // @include      https://hentaiverse.org/*
@@ -29,7 +29,7 @@ var torep = new Array();
 var repby = new Array();
 
 function mainhh() {
-    if (getLocation.match('://hentaiverse.org/equip/') || getLocation.match('://hentaiverse.org/pages/showequip.php')) {
+    if (getLocation.match('hentaiverse.org/equip/') || getLocation.match('hentaiverse.org/pages/showequip.php')) {
         html = eqmthh(document.body);
         document.body.innerHTML = html;
         return
