@@ -1,5 +1,5 @@
 ﻿// ==UserScript==
-// @name         HV Equipment Hightlight
+// @name         HV Equipment Highlight
 // @author       carry0987; ggxxsol(ggxxhy); hc br
 // @namespace    https://github.com/carry0987
 // @support      https://github.com/carry0987/UserJS/issues
