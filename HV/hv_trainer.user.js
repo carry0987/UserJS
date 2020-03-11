@@ -3,7 +3,7 @@
 // @author       carry0987
 // @namespace    https://github.com/carry0987
 // @support      https://github.com/carry0987/UserJS/issues
-// @version      1.5.0
+// @version      1.5.1
 // @description  Start training automatically and display process on top bar
 // @icon         https://carry0987.github.io/favicon.png
 // @include      http*://hentaiverse.org/*
@@ -14,15 +14,16 @@
 (function() {
     if (!getElem('#navbar')) return
     var countdownBox = getElem('body>#csp>#navbar>div:nth-child(5)>div').appendChild(createElem('a', 'trainer'))
-    countdownBox.href = '?s=Character&ss=tr'
+    //countdownBox.href = '?s=Character&ss=tr'
+    countdownBox.href = ''
     countdownBox.style.cssText = 'font-weight:bold;font-size:large;position:relative;bottom:21px;left:84px'
-    //If you don't want to start training automatically, set it to false
+    //Default Auto Training ID
     const TrainID = 50
-    /*
+    //Open Training Task setting window
     countdownBox.onclick = function() {
         setTrainerTask()
     }
-    */
+
     var timeLast
     var trainList = {
         'Adept Learner': {
@@ -197,7 +198,7 @@
             time = countdownBox.value || new Date().getTime()
             timeChange()
         }
-    };
+    }
     //Update training time
     post('?s=Character&ss=tr', function(data) {
         if (getElem('#train_progcnt', data)) {
@@ -219,12 +220,13 @@
                     startTraining(trainTask[0].id)
                 }
                 setValue('trainTask', trainTask)
+            } else {
+                //Auto start training
+                startTraining(TrainID)
             }
             countdownBox.style.cssText = 'font-weight:bold;font-size:medium;position:relative;bottom:20px;left:84px'
             countdownBox.innerHTML = 'Completed'
-            document.title = 'Completed'
-            //Auto start training
-            startTraining(TrainID)
+            //document.title = 'Completed'
         }
     })
 
