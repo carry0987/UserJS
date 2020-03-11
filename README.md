@@ -25,3 +25,4 @@ Just storge my user script for Tampermonkey
 | [HV How Rich Am I ?](HV/hv_how_rich_am_i.user.js) | [Raw](https://github.com/carry0987/UserJS/raw/master/HV/hv_how_rich_am_i.user.js) | 1.4.5 | Show how many Credits you have |
 | [HV Equipment Repairer](HV/hv_equip_repairer.user.js) | [Raw](https://github.com/carry0987/UserJS/raw/master/HV/hv_equip_repairer.user.js) | 1.2.0 | Repair equipments automatically |
 | [HV Equipment Highlight](HV/hv_equip_highlight.user.js) | [Raw](https://github.com/carry0987/UserJS/raw/master/HV/hv_equip_highlight.user.js) | 1.2.8 | People always discern the color first, then to see word |
+| [HV Auto Refresh](HV/hv_auto_refresh.user.js) | [Raw](https://github.com/carry0987/UserJS/raw/master/HV/hv_auto_refresh.user.js) | 1.0.0 | Auto refresh when battle finished |
