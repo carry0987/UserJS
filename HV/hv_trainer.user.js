@@ -3,7 +3,7 @@
 // @author       carry0987
 // @namespace    https://github.com/carry0987
 // @support      https://github.com/carry0987/UserJS/issues
-// @version      1.5.5
+// @version      1.5.6
 // @description  Start training automatically and display process on top bar
 // @icon         https://carry0987.github.io/favicon.png
 // @include      http*://hentaiverse.org/*
@@ -23,7 +23,6 @@
     countdownBox.onclick = function() {
         setTrainerTask()
     }
-
     var timeLast
     var trainList = {
         'Adept Learner': {
@@ -187,16 +186,18 @@
         buttonCancel.onclick = function() {
             hv_trainer_box.style.display = 'none'
         }
-        if (getValue('trainTask') && getValue('trainTask') !== '[]') {
-            trainTask = getValue('trainTask', true)
-            for (i = 0; i < trainTask.length; i++) {
-                tr = tbody.appendChild(createElem('tr'))
-                tr.innerHTML = '<td>' + (order++) + '</td><td>' + select + '</td><td><input type="number" value="' + trainTask[i].freq + '" placeholder="1" min="1"></td><td></td>'
-                getElem('#hv_trainer_box select', tr).value = trainTask[i].id
+        if (!getElem('#hv_trainer_box')) {
+            if (getValue('trainTask') && getValue('trainTask') !== '[]') {
+                trainTask = getValue('trainTask', true)
+                for (i = 0; i < trainTask.length; i++) {
+                    tr = tbody.appendChild(createElem('tr'))
+                    tr.innerHTML = '<td>' + (order++) + '</td><td>' + select + '</td><td><input type="number" value="' + trainTask[i].freq + '" placeholder="1" min="1"></td><td></td>'
+                    getElem('#hv_trainer_box select', tr).value = trainTask[i].id
+                }
+                timeChange()
+            } else {
+                buttonNew.click()
             }
-            timeChange()
-        } else {
-            buttonNew.click()
         }
         tbody.onclick = changeEvent
         tbody.onkeyup = changeEvent
