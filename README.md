@@ -14,7 +14,7 @@ Just storge my user script for Tampermonkey
 ### EX
 | Name | Raw | Version | Description |
 | --- | --- | --- | --- |
-| [ExH EveryDay](EX/ex_everyday.user.js) | [Raw](https://github.com/carry0987/UserJS/raw/master/EX/ex_everyday.user.js) | 1.4.7 | Get daily bonus reward even in ExHentai & HV |
+| [ExH EveryDay](EX/ex_everyday.user.js) | [Raw](https://github.com/carry0987/UserJS/raw/master/EX/ex_everyday.user.js) | 1.0.0 | Get daily bonus reward even in ExHentai & HV |
 
 ### HV
 | Name | Raw | Version | Description |
