@@ -3,7 +3,7 @@
 // @author       carry0987
 // @namespace    https://github.com/carry0987
 // @support      https://github.com/carry0987/UserJS/issues
-// @version      1.5.1
+// @version      1.5.2
 // @description  Start training automatically and display process on top bar
 // @icon         https://carry0987.github.io/favicon.png
 // @include      http*://hentaiverse.org/*
@@ -18,7 +18,7 @@
     countdownBox.href = ''
     countdownBox.style.cssText = 'font-weight:bold;font-size:large;position:relative;bottom:21px;left:84px'
     //Default Auto Training ID
-    const TrainID = 50
+    var TrainID = 50
     //Open Training Task setting window
     countdownBox.onclick = function() {
         setTrainerTask()
@@ -200,6 +200,7 @@
         }
     }
     //Update training time
+    var trainTask
     post('?s=Character&ss=tr', function(data) {
         if (getElem('#train_progcnt', data)) {
             var nowTraining = getElem('#train_progress>div>strong', data).innerText
@@ -207,13 +208,20 @@
             var timeAll = trainList[nowTraining].time
             timeLast = parseInt(timeAll * (1 - 0.01 * nowTrainingProcess) * 60 * 60)
             var timeEnd = new Date(new Date().getTime() + timeLast * 1000)
+            if (getValue('trainTask') && getValue('trainTask') !== '[]') {
+                trainTask = getValue('trainTask', true)
+                if (trainTask[0].freq <= 0) trainTask.splice(0, 1)
+                if (trainTask.length > 0) {
+                    TrainID = trainTask[0].id
+                }
+            }
             var nextTrain = getTraining(trainList, 'id', TrainID)
             countdownBox.title = 'Now Train: ' + nowTraining + '\nTrain End: ' + timeEnd.toLocaleString(lang, timeOption) + '\nNext Train: ' + nextTrain
             countdownBox.value = timeEnd.getTime()
             timeUpdate()
         } else {
             if (getValue('trainTask') && getValue('trainTask') !== '[]') {
-                var trainTask = getValue('trainTask', true)
+                trainTask = getValue('trainTask', true)
                 if (trainTask[0].freq <= 0) trainTask.splice(0, 1)
                 if (trainTask.length > 0) {
                     trainTask[0].freq--
