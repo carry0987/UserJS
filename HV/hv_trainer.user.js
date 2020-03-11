@@ -3,7 +3,7 @@
 // @author       carry0987
 // @namespace    https://github.com/carry0987
 // @support      https://github.com/carry0987/UserJS/issues
-// @version      1.5.2
+// @version      1.5.5
 // @description  Start training automatically and display process on top bar
 // @icon         https://carry0987.github.io/favicon.png
 // @include      http*://hentaiverse.org/*
@@ -13,12 +13,12 @@
 
 (function() {
     if (!getElem('#navbar')) return
-    var countdownBox = getElem('body>#csp>#navbar>div:nth-child(5)>div').appendChild(createElem('a', 'trainer'))
+    var countdownBox = getElem('body>#csp>#navbar>div:nth-child(5)>div').appendChild(createElem('span', 'trainer'))
     //countdownBox.href = '?s=Character&ss=tr'
-    countdownBox.href = ''
+    //countdownBox.href = ''
     countdownBox.style.cssText = 'font-weight:bold;font-size:large;position:relative;bottom:21px;left:84px'
     //Default Auto Training ID
-    var TrainID = 50
+    var TrainID = false
     //Open Training Task setting window
     countdownBox.onclick = function() {
         setTrainerTask()
@@ -106,18 +106,43 @@
     }
     var lang = navigator.language
     var timeOption = { hour12: false }
+    //Set CSS
+    addStyle()
     //Set Trainer Task
     function setTrainerTask() {
         var time = countdownBox.value || new Date().getTime()
         var trainTask
-        var trainWindow = window.open('', 'trainWindow', 'resizable,scrollbars,width=550,height=250')
-        var doc = trainWindow.document
-        var style = getElem('head', doc).appendChild(createElem('style'))
-        style.textContent = '*{margin:5px;text-align:center;}table{border:2px solid #000;border-collapse:collapse;margin:0 auto;}table>tbody>tr>td{border:1px solid #000;}input{text-align:right;width:60px;}'
-        var table = getElem('body', doc).appendChild(createElem('table'))
-        var tbody = table.appendChild(createElem('tbody'))
-        var tr = tbody.appendChild(createElem('tr'))
-        tr.innerHTML = '<td></td><td>Project</td><td>Freq</td><td>Start Time - End Time</td>'
+        var doc = document
+        var hv_trainer_box
+        var buttonNew
+        var buttonSave
+        var buttonCancel
+        var table
+        var tbody
+        var tr
+        if (!getElem('#hv_trainer_box')) {
+            hv_trainer_box = getElem('body', doc).appendChild(createElem('div', 'hv_trainer_box'))
+            hv_trainer_box.appendChild(createElem('div'))
+            table = getElem('#hv_trainer_box>div').appendChild(createElem('table'))
+            tbody = table.appendChild(createElem('tbody'))
+            tr = tbody.appendChild(createElem('tr'))
+            tr.innerHTML = '<td></td><td>Project</td><td>Freq</td><td>Start Time - End Time</td>'
+            buttonNew = getElem('#hv_trainer_box>div').appendChild(createElem('button', 'btn_new'))
+            buttonNew.textContent = 'New Task'
+            buttonSave = getElem('#hv_trainer_box>div').appendChild(createElem('button', 'btn_save'))
+            buttonSave.textContent = 'Save Task'
+            buttonCancel = getElem('#hv_trainer_box>div').appendChild(createElem('button', 'btn_cancel'))
+            buttonCancel.textContent = 'Cancel'
+        } else {
+            hv_trainer_box = getElem('#hv_trainer_box')
+            hv_trainer_box.style.display = 'block'
+            buttonNew = getElem('#hv_trainer_box #btn_new')
+            buttonSave = getElem('#hv_trainer_box #btn_save')
+            buttonCancel = getElem('#hv_trainer_box #btn_cancel')
+            table = getElem('#hv_trainer_box>div>table')
+            tbody = getElem('#hv_trainer_box>div>table>tbody')
+            tr = getElem('#hv_trainer_box>div>table>tbody>tr')
+        }
         var select = [
             '<select>',
             '<option value="-1"></option>',
@@ -140,17 +165,13 @@
         ].join('')
         var order = 1
         var i, elem_time, elem_select, elem_input
-        var buttonNew = getElem('body', doc).appendChild(createElem('button'))
-        buttonNew.textContent = 'New Task'
         buttonNew.onclick = function() {
             tr = tbody.appendChild(createElem('tr'))
             tr.innerHTML = '<td>' + (order++) + '</td><td>' + select + '</td><td><input type="number" value="1" placeholder="1" min="1"></td><td></td>'
             getElem('select', tr).value = '-1'
         }
-        var buttonSave = getElem('body', doc).appendChild(createElem('button'))
-        buttonSave.textContent = 'Save Task'
         buttonSave.onclick = function() {
-            var input = getElem('select,input', 'all', tbody)
+            var input = getElem('#hv_trainer_box select,input', 'all', tbody)
             trainTask = []
             for (i = 0; i < input.length; i = i + 2) {
                 if (input[i].value !== '-1') {
@@ -161,15 +182,17 @@
                 }
             }
             setValue('trainTask', trainTask)
-            trainWindow.close()
             window.location.href = window.location.href
+        }
+        buttonCancel.onclick = function() {
+            hv_trainer_box.style.display = 'none'
         }
         if (getValue('trainTask') && getValue('trainTask') !== '[]') {
             trainTask = getValue('trainTask', true)
             for (i = 0; i < trainTask.length; i++) {
                 tr = tbody.appendChild(createElem('tr'))
                 tr.innerHTML = '<td>' + (order++) + '</td><td>' + select + '</td><td><input type="number" value="' + trainTask[i].freq + '" placeholder="1" min="1"></td><td></td>'
-                getElem('select', tr).value = trainTask[i].id
+                getElem('#hv_trainer_box select', tr).value = trainTask[i].id
             }
             timeChange()
         } else {
@@ -179,9 +202,9 @@
         tbody.onkeyup = changeEvent
 
         function timeChange() {
-            elem_time = getElem('tr>td:nth-child(4)', 'all', tbody)
-            elem_select = getElem('select', 'all', tbody)
-            elem_input = getElem('input', 'all', tbody)
+            elem_time = getElem('#hv_trainer_box tr>td:nth-child(4)', 'all', tbody)
+            elem_select = getElem('#hv_trainer_box select', 'all', tbody)
+            elem_input = getElem('#hv_trainer_box input', 'all', tbody)
             for (i = 0; i < elem_select.length; i++) {
                 elem_time[i + 1].textContent = elem_select[i].value === '-1' ? '' : timeStr(elem_input[i].value * 1 * trainList2[elem_select[i].value])
             }
@@ -337,4 +360,14 @@ function getTraining(arr, keys, val) {
         }
     }
     return false;
+}
+
+//Add CSS
+function addStyle() {
+    var globalStyle = getElem('head').appendChild(createElem('style'))
+    var cssContent = [
+        '#hv_trainer_box{left:calc(50% - 350px);top:50px;font-size:16px!important;z-index:4;width:700px;height:538px;position:absolute;text-align:left;background-color:#E3E0D1;border:1px solid #000;border-radius:10px;font-family:"Microsoft Yahei";}',
+        '#hv_trainer_box>div{margin:5px;text-align:center;}#hv_trainer_box>div>table{border:2px solid #000;border-collapse:collapse;margin:0 auto;}#hv_trainer_box>div>table>tbody>tr>td{border:1px solid #000;}#hv_trainer_box>div input{text-align:right;width:60px;}'
+    ].join('')
+    globalStyle.textContent = cssContent
 }
