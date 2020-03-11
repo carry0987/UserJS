@@ -26,3 +26,9 @@ Just storge my user script for Tampermonkey
 | [HV Equipment Repairer](HV/hv_equip_repairer.user.js) | [Raw](https://github.com/carry0987/UserJS/raw/master/HV/hv_equip_repairer.user.js) | 1.2.0 | Repair equipments automatically |
 | [HV Equipment Highlight](HV/hv_equip_highlight.user.js) | [Raw](https://github.com/carry0987/UserJS/raw/master/HV/hv_equip_highlight.user.js) | 1.2.8 | People always discern the color first, then to see word |
 | [HV Auto Refresh](HV/hv_auto_refresh.user.js) | [Raw](https://github.com/carry0987/UserJS/raw/master/HV/hv_auto_refresh.user.js) | 1.0.0 | Auto refresh when battle finished |
+
+### Test
+| Name | Raw | Version | Description |
+| --- | --- | --- | --- |
+| [HV 物品漢化](test/hv_chinese_translation.user.js) | [Raw](https://github.com/carry0987/UserJS/raw/master/test/hv_chinese_translation.user.js) | 1.0.0 | Translate HV items into traditional chinese |
+| [HV 介面漢化](test/hv_interface_chinese_translation.user.js) | [Raw](https://github.com/carry0987/UserJS/raw/master/test/hv_interface_chinese_translation.user.js) | 1.0.0 | Translate HV interface into traditional chinese |
