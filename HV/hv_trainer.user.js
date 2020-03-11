@@ -3,7 +3,7 @@
 // @author       carry0987
 // @namespace    https://github.com/carry0987
 // @support      https://github.com/carry0987/UserJS/issues
-// @version      1.5.7
+// @version      1.5.8
 // @description  Start training automatically and display process on top bar
 // @icon         https://carry0987.github.io/favicon.png
 // @include      http*://hentaiverse.org/*
@@ -199,7 +199,7 @@
             }
             timeChange()
         } else {
-            buttonNew.click()
+            if (!getElem('#hv_trainer_box .train_task')) { buttonNew.click() }
         }
         tbody.onclick = changeEvent
         tbody.onkeyup = changeEvent
