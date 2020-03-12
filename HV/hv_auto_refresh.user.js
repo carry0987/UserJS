@@ -3,7 +3,7 @@
 // @author       carry0987
 // @namespace    https://github.com/carry0987
 // @support      https://github.com/carry0987/UserJS/issues
-// @version      1.0.0
+// @version      1.0.5
 // @description  Auto refresh when battle finished
 // @icon         https://carry0987.github.io/favicon.png
 // @match        http*://hentaiverse.org/*
@@ -17,12 +17,10 @@ const check_battle = 60000;
 
 //Check battle status
 function checkBattle(elem) {
-    if (elem.match(/\/y\/battle\/finishbattle\.png/g)) {
-        if (getElem('#btcp')) {
-            getElem('#btcp').click();
-        } else {
-            window.open('https://hentaiverse.org/?s=Character&ss=ch', '_self');
-        }
+    if (getElem('#btcp')) {
+        getElem('#btcp').click();
+    } else if (elem.match(/\/y\/battle\/finishbattle\.png/g)) {
+        window.open('https://hentaiverse.org/?s=Character&ss=ch', '_self');
     }
 }
 
