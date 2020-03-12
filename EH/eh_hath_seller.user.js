@@ -3,7 +3,7 @@
 // @author       carry0987
 // @namespace    https://github.com/carry0987
 // @support      https://github.com/carry0987/UserJS/issues
-// @version      1.2.5
+// @version      1.2.6
 // @description  Auto insert credit price
 // @icon         https://carry0987.github.io/favicon.png
 // @match        https://e-hentai.org/exchange.php?t=hath
@@ -13,7 +13,7 @@
 (function() {
     'use strict';
     //Get value
-    var current_price = document.querySelector('.stuffbox>div>div:nth-child(2)>div>strong:nth-child(2)');
+    var current_price = document.querySelector('.stuffbox>div>div:nth-child(2)>div>strong:nth-child(3)');
     var get_price = current_price.nextSibling.wholeText;
     get_price = get_price.split(' ')[1].replace(/\,/g, '');
     get_price = parseInt(get_price);
