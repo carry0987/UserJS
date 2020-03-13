@@ -3,7 +3,7 @@
 // @author       carry0987
 // @namespace    https://github.com/carry0987
 // @support      https://github.com/carry0987/UserJS/issues
-// @version      1.5.3
+// @version      1.5.4
 // @description  Auto report when encounter monster
 // @icon         https://carry0987.github.io/favicon.png
 // @match        https://exhentai.org/*
@@ -21,7 +21,7 @@ const DAY_MS = 86400 * 1e3;
 const DEBUG = false;
 const six_hr = 2.16e+7;
 const twelve_hr = 4.32e+7;
-const check_encounter = 60000;
+const recheck_times = 60000;
 
 class Cookie {
     constructor(cookie = document.cookie) {
@@ -84,8 +84,8 @@ function countEncounter() {
     return get_encounter;
 }
 
-//Get bonus
-function getBonus() {
+//Get encounter
+function checkEncounter() {
     GM_xmlhttpRequest({
         method: 'GET',
         url: 'https://e-hentai.org/news.php',
@@ -126,7 +126,7 @@ function getElem(ele, mode, parent) {
     checkNew();
     function checkNew() {
         setInterval(function() {
-            getBonus();
-        }, check_encounter)
+            checkEncounter();
+        }, recheck_times)
     }
 })()
