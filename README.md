@@ -20,7 +20,7 @@ Just storge my user script for Tampermonkey
 | Name | Raw | Version | Description |
 | --- | --- | --- | --- |
 | [HV Trainer](HV/hv_trainer.user.js) | [Raw](https://github.com/carry0987/UserJS/raw/master/HV/hv_trainer.user.js) | 1.5.8 | Start training automatically and display process on top bar |
-| [HV Encounter](HV/hv_encounter.user.js) | [Raw](https://github.com/carry0987/UserJS/raw/master/HV/hv_encounter.user.js) | 1.5.3 | Auto report when encounter monster |
+| [HV Encounter](HV/hv_encounter.user.js) | [Raw](https://github.com/carry0987/UserJS/raw/master/HV/hv_encounter.user.js) | 1.5.4 | Auto report when encounter monster |
 | [HV Challenge](HV/hv_challenge.user.js) | [Raw](https://github.com/carry0987/UserJS/raw/master/HV/hv_challenge.user.js) | 1.1.0 | Easily change the challenge level |
 | [HV How Rich Am I ?](HV/hv_how_rich_am_i.user.js) | [Raw](https://github.com/carry0987/UserJS/raw/master/HV/hv_how_rich_am_i.user.js) | 1.4.5 | Show how many Credits you have |
 | [HV Equipment Repairer](HV/hv_equip_repairer.user.js) | [Raw](https://github.com/carry0987/UserJS/raw/master/HV/hv_equip_repairer.user.js) | 1.2.0 | Repair equipments automatically |
