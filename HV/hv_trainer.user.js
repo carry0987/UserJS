@@ -3,7 +3,7 @@
 // @author       carry0987
 // @namespace    https://github.com/carry0987
 // @support      https://github.com/carry0987/UserJS/issues
-// @version      1.5.8
+// @version      1.5.9
 // @description  Start training automatically and display process on top bar
 // @icon         https://carry0987.github.io/favicon.png
 // @include      http*://hentaiverse.org/*
@@ -372,8 +372,8 @@ function getTraining(arr, keys, val) {
 function addStyle() {
     var globalStyle = getElem('head').appendChild(createElem('style'))
     var cssContent = [
-        '#hv_trainer_box{left:calc(50% - 350px);top:50px;font-size:16px!important;z-index:4;width:700px;height:538px;position:absolute;text-align:left;background-color:#E3E0D1;border:1px solid #000;border-radius:10px;font-family:"Microsoft Yahei";}',
-        '#hv_trainer_box>div{margin:5px;text-align:center;}#hv_trainer_box>div>table{border:2px solid #000;border-collapse:collapse;margin:0 auto;}#hv_trainer_box>div>table>tbody>tr>td{border:1px solid #000;}#hv_trainer_box>div input{text-align:right;width:60px;}'
+        '#hv_trainer_box{left:calc(50% - 200px);top:50px;font-size:16px!important;z-index:4;width:400px;height:440px;position:absolute;text-align:left;background-color:#E3E0D1;border:1px solid #000;border-radius:10px;font-family:"Microsoft Yahei";}',
+        '#hv_trainer_box>div{margin:15px;text-align:center;}#hv_trainer_box>div>table{border:2px solid #000;border-collapse:collapse;margin:0 auto;margin-bottom: 0.25em;}#hv_trainer_box>div>table>tbody>tr>td{border:1px solid #000;}#hv_trainer_box>div input{text-align:right;width:60px;}'
     ].join('')
     globalStyle.textContent = cssContent
 }
