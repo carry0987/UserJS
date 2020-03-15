@@ -1,6 +1,11 @@
 # UserJS
 Just storge my user script for Tampermonkey
 
+### Tool
+| Name | Raw | Version | Description |
+| --- | --- | --- | --- |
+| [Rutracker Auto Thanks](Tool/rutracker_auto_thanks.user.js) | [Raw](https://github.com/carry0987/UserJS/raw/master/Tool/rutracker_auto_thanks.user.js) | 1.1.5 | Auto thanks to the OP when download the torrent |
+
 ### EH
 | Name | Raw | Version | Description |
 | --- | --- | --- | --- |
