@@ -18,10 +18,12 @@
 // ==/UserScript==
 
 (function() {
-    if (!document.querySelector('#taglist')) { //搜索页
+    //Search page
+    if (!document.querySelector('#taglist')) {
         window.BatchTime = 0;
         GM_addStyle('.itg>tbody>tr[type="hover"]{background-color:#669933}.itg>tbody>tr:hover{background-color:#4a86e8}.itd>label{cursor:pointer;}.stdbtn.EH_FavHelper{z-index:9999;float:right;position:fixed;bottom:10px;}');
-        document.querySelector('.itg').oncontextmenu = function(e) { //右键：下载
+        //Right click to download
+        document.querySelector('.itg').oncontextmenu = function(e) {
             console.log(e);
             e.preventDefault();
             if (e.target.className.indexOf('TagPreview_') >= 0) {
@@ -32,20 +34,22 @@
         }
         var tr = document.querySelectorAll('.itg>tbody>tr');
         if (!document.querySelector('.itg>tbody>tr>td>input')) {
-            if (tr.length === 2 && confirm('搜索到1本，是否立即下载')) GM_openInTab(tr[1].querySelector('.itd>div>.it5>a').href + '#2', true);
+            if (tr.length === 2 && confirm('Found 1 books, download now ?')) GM_openInTab(tr[1].querySelector('.itd>div>.it5>a').href + '#2', true);
             tr.forEach(function(_tr, i) {
                 var div = (i === 0) ? document.createElement('th') : document.createElement('td');
                 div.style = 'text-align:center;';
                 div.innerHTML = '<input id="EH_FavHelper_' + i + '" type="checkbox">';
                 if (i === 0) {
-                    div.querySelector('input').addEventListener('click', function() { //全选
+                    //Select all
+                    div.querySelector('input').addEventListener('click', function() {
                         var _this = this;
                         document.querySelectorAll('tr.gtr0 input,tr.gtr1 input').forEach(function(i) {
                             i.checked = (_this.checked === true) ? true : false;
                         });
                     });
                 }
-                div.querySelector('input').addEventListener('change', function() { //高亮选中
+                //Highlight selected
+                div.querySelector('input').addEventListener('change', function() {
                     var a = this.parentNode.parentNode;
                     a.setAttribute('type', (a.getAttribute('type') === 'hover') ? '' : 'hover');
                 });
@@ -53,7 +57,8 @@
                 if (_tr.querySelector('.itd')) _tr.querySelector('.itd').innerHTML = '<label for="EH_FavHelper_' + i + '">' + _tr.querySelector('.itd').innerHTML + '</label>';
             });
         } else {
-            if (tr.length === 2) GM_openInTab(tr[1].querySelector('.itd>div>.it5>a').href + '#2', true); //搜索到1本，立即下载
+            //Get one result, download immediately
+            if (tr.length === 2) GM_openInTab(tr[1].querySelector('.itd>div>.it5>a').href + '#2', true);
         };
         var Open = document.createElement('input');
         Open.value = 'Open';
@@ -65,7 +70,7 @@
         }
         Open.onmousedown = function(event) {
             var input_check = document.querySelectorAll('.itg>tbody>tr>td>input:checked');
-            //console.log(input_check);
+            creportInfo(input_check);
             input_check.forEach(function(i) {
                 var _tr = i.parentNode.parentNode;
                 if (_tr.style.display !== 'none' && _tr.querySelector('.itd>div>.it5>a')) GM_openInTab(_tr.querySelector('.itd>div>.it5>a').href + '#' + event.buttons, true);
@@ -104,7 +109,8 @@
             window.BatchTime++;
         }
         document.body.appendChild(Batch);
-    } else { //信息页
+    } else {
+        //Information page
         if (location.hash === '#2') {
             var start = setInterval(function() {
                 if (document.querySelector('.ehD-box>.g2')) {
@@ -123,3 +129,9 @@
         }
     }
 })();
+
+//Report info in console
+function reportInfo(vars, showType = false) {
+    if (showType === true) console.log(typeof vars);
+    console.log(vars);
+}
