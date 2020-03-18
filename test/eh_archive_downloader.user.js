@@ -70,7 +70,7 @@
         }
         Open.onmousedown = function(event) {
             var input_check = document.querySelectorAll('.itg>tbody>tr>td>input:checked');
-            creportInfo(input_check);
+            reportInfo(input_check);
             input_check.forEach(function(i) {
                 var _tr = i.parentNode.parentNode;
                 if (_tr.style.display !== 'none' && _tr.querySelector('.itd>div>.it5>a')) GM_openInTab(_tr.querySelector('.itd>div>.it5>a').href + '#' + event.buttons, true);
