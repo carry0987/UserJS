@@ -24,7 +24,7 @@
         GM_addStyle('.itg>tbody>tr[type="hover"]{background-color:#669933}.itg>tbody>tr:hover{background-color:#4a86e8}.itd>label{cursor:pointer;}.stdbtn.EH_FavHelper{z-index:9999;float:right;position:fixed;bottom:10px;}');
         //Right click to download
         document.querySelector('.itg').oncontextmenu = function(e) {
-            console.log(e);
+            reportInfo(e);
             e.preventDefault();
             if (e.target.className.indexOf('TagPreview_') >= 0) {
                 GM_openInTab(e.target.href + '#2', true);
