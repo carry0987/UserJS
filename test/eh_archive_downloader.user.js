@@ -14,10 +14,10 @@
 // @exclude      http*://e-hentai.org/s/*
 // @grant        GM_addStyle
 // @grant        GM_openInTab
-// @run-at       document-idle
+// @run-at       document-end
 // ==/UserScript==
 
-(function() {
+window.onload = function() {
     //Search page
     if (!document.querySelector('#taglist')) {
         window.BatchTime = 0;
@@ -128,7 +128,7 @@
             }, 3000);
         }
     }
-})();
+}();
 
 //Report info in console
 function reportInfo(vars, showType = false) {
