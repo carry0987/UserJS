@@ -1,5 +1,5 @@
 ﻿// ==UserScript==
-// @name         HV 物品漢化
+// @name         HV Item Chinese TR
 // @author       ggxxsol(ggxxhy); mbbdzz; hc br; carry0987
 // @namespace    https://github.com/carry0987
 // @support      https://github.com/carry0987/UserJS/issues
