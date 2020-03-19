@@ -3,7 +3,7 @@
 // @author       ggxxsol(ggxxhy); mbbdzz; hc br; carry0987
 // @namespace    https://github.com/carry0987
 // @support      https://github.com/carry0987/UserJS/issues
-// @version      1.0.5
+// @version      1.0.6
 // @description  Translate HentaiVerse items into traditional chinese
 // @icon         https://e-hentai.org/favicon.ico
 // @include      https://hentaiverse.org/*
@@ -113,6 +113,7 @@ function mainhh() {
             font-size: 15px;color: red;position: absolute;top: 652px;left: 2px;text-align: left;border: 1px solid rgb(92, 13, 17);padding: 4px;cursor: pointer;-webkit-user-select: none;-khtml-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none
             `;
             var showConfig
+            showConfig = (getValue('hideflag', true) && getValue('hideflag', true) == 0) ? 'Hide the locking equipment' : 'Display lock equipment';
             try {
                 if (!getValue('hideflag')) {
                     setValue('hideflag', 1)
@@ -123,7 +124,6 @@ function mainhh() {
                         equipdiv[i].parentNode.style.cssText = 'display:none;'
                     }
                 }
-                showConfig = (getValue('hideflag', true) && getValue('hideflag', true) == 0) ? 'Hide the locking equipment' : 'Display lock equipment';
                 equhide.innerHTML = 'NOW ' + showConfig
             } catch (e) { alert(e) }
             equhide.onclick = function() {
@@ -139,7 +139,6 @@ function mainhh() {
                         equipdiv[i].parentNode.style.cssText = 'display:none;'
                     }
                 }
-                showConfig = (getValue('hideflag', true) && getValue('hideflag', true) == 0) ? 'Hide the locking equipment' : 'Display lock equipment';
                 this.innerHTML = 'NOW ' + showConfig
             }
             document.body.appendChild(equhide);
