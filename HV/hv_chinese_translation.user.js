@@ -3,7 +3,7 @@
 // @author       ggxxsol(ggxxhy); mbbdzz; hc br; carry0987
 // @namespace    https://github.com/carry0987
 // @support      https://github.com/carry0987/UserJS/issues
-// @version      1.0.7
+// @version      1.0.8
 // @description  Translate HentaiVerse items into traditional chinese
 // @icon         https://e-hentai.org/favicon.ico
 // @include      https://hentaiverse.org/*
@@ -139,8 +139,7 @@ function mainhh() {
                         equipdiv[i].parentNode.style.cssText = 'display:none;'
                     }
                 }
-                showConfig = (getValue('hideflag', true) && getValue('hideflag', true) == 0) ? 'Hide the locking equipment' : 'Display lock equipment';
-                this.innerHTML = 'NOW ' + showConfig
+                this.innerHTML = 'NOW ' + (getValue('hideflag', true) && getValue('hideflag', true) == 0) ? 'Hide the locking equipment' : 'Display lock equipment'
             }
             document.body.appendChild(equhide);
             break;
