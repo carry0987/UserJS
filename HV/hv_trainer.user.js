@@ -258,7 +258,7 @@
                 //Auto start training
                 startTraining(TrainID)
             }
-            countdownBox.style.cssText = 'font-weight:bold;font-size:medium;position:relative;bottom:20px;left:84px'
+            countdownBox.style.cssText = 'font-weight:bold;font-size:medium;position:relative;bottom:20px;left:84px;cursor:pointer'
             countdownBox.innerHTML = 'Completed'
             //document.title = 'Completed'
         }
