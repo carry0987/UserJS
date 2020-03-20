@@ -3,7 +3,7 @@
 // @author       carry0987
 // @namespace    https://github.com/carry0987
 // @support      https://github.com/carry0987/UserJS/issues
-// @version      1.6.0
+// @version      1.6.1
 // @description  Start training automatically and display process on top bar
 // @icon         https://carry0987.github.io/favicon.png
 // @include      http*://hentaiverse.org/*
@@ -16,7 +16,7 @@
     var countdownBox = getElem('body>#csp>#navbar>div:nth-child(5)>div').appendChild(createElem('span', 'trainer'))
     //countdownBox.href = '?s=Character&ss=tr'
     //countdownBox.href = ''
-    countdownBox.style.cssText = 'font-weight:bold;font-size:large;position:relative;bottom:21px;left:84px'
+    countdownBox.style.cssText = 'font-weight:bold;font-size:large;position:relative;bottom:21px;left:84px;cursor:pointer'
     //Default Auto Training ID
     var TrainID = false
     //Open Training Task setting window
