@@ -3,7 +3,7 @@
 // @author       carry0987
 // @namespace    https://github.com/carry0987
 // @support      https://github.com/carry0987/UserJS/issues
-// @version      1.2.0
+// @version      1.2.1
 // @description  Get daily bonus reward even in ExHentai & HV
 // @icon         https://carry0987.github.io/favicon.png
 // @match        https://exhentai.org/*
@@ -70,7 +70,7 @@ const onload = (resp) => {
 //Report info in console
 function reportInfo(infoMsg = false, vars, showType = false) {
     if (showType === true) console.log(typeof vars);
-    if (infoMsg !== false) {
+    if (infoMsg !== false && typeof infoMsg === 'string') {
         console.log(infoMsg + vars);
     } else {
         console.log(vars);
