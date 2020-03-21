@@ -9,7 +9,7 @@
 // @match        http://*.hentaiverse.org/pages/showequip.php?eid=*&key=*
 // @match        https://hentaiverse.org/equip/*
 // @match        http://alt.hentaiverse.org/equip/*
-// @require     https://dl.dropboxusercontent.com/u/5046/static/hv_scripts/classToString.js?t=1
+// @require      https://dl.dropboxusercontent.com/u/5046/static/hv_scripts/classToString.js?t=1
 // @license      MIT
 // @grant        none
 // @run-at       document-end
