@@ -260,7 +260,6 @@ function outputSummary(baseSummary) {
             tot.innerHTML = 'Total ' + credit(upgradeTotal(summary)) + ' (' + credit(upgradeTotal(totalInvested.summary)) + ')';
             html.appendChild(tot);
         }
-
         equipment.appendChild(html);
     }
 }
@@ -372,7 +371,6 @@ function getBasicMaterialCost() {
     } else {
         return materialCost.unknown;
     }
-
 }
 
 //TODO this is inefficient
