@@ -3,7 +3,7 @@
 // @author       carry0987
 // @namespace    https://github.com/carry0987
 // @support      https://github.com/carry0987/UserJS/issues
-// @version      1.2.1
+// @version      1.2.2
 // @description  Get daily bonus reward even in ExHentai & HV
 // @icon         https://carry0987.github.io/favicon.png
 // @match        https://exhentai.org/*
@@ -47,7 +47,7 @@ var checkDate
 if (getValue(cookie.id, false) !== null) {
     checkDate = getValue(cookie.id, false);
 } else {
-    setValue(cookie.id, new Date().toJSON();
+    setValue(cookie.id, new Date().toJSON());
     checkDate = getValue(cookie.id, false);
 }
 const lastDate = new Date(checkDate);
