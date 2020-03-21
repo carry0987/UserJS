@@ -3,7 +3,7 @@
 // @author       carry0987
 // @namespace    https://github.com/carry0987
 // @support      https://github.com/carry0987/UserJS/issues
-// @version      1.1.5
+// @version      1.2.0
 // @description  Get daily bonus reward even in ExHentai & HV
 // @icon         https://carry0987.github.io/favicon.png
 // @match        https://exhentai.org/*
@@ -43,7 +43,14 @@ class Cookie {
 }
 
 const cookie = new Cookie;
-const lastDate = new Date(getValue(cookie.id, false));
+var checkDate
+if (getValue(cookie.id, false) !== null) {
+    checkDate = getValue(cookie.id, false);
+} else {
+    setValue(cookie.id, new Date().toJSON();
+    checkDate = getValue(cookie.id, false);
+}
+const lastDate = new Date(checkDate);
 
 const onerror = (resp) => {
     if (DEBUG === true) {
@@ -61,9 +68,13 @@ const onload = (resp) => {
 }
 
 //Report info in console
-function reportInfo(vars, showType = false) {
+function reportInfo(infoMsg = false, vars, showType = false) {
     if (showType === true) console.log(typeof vars);
-    console.log(vars);
+    if (infoMsg !== false) {
+        console.log(infoMsg + vars);
+    } else {
+        console.log(vars);
+    }
 }
 
 //Get bonus
@@ -110,6 +121,12 @@ function getElem(ele, mode, parent) {
             var dateDiff = Date.now() - lastDate;
             if (dateDiff > DAY_MS || dateDiff === 0) {
                 getBonus();
+            } else {
+                if (DEBUG === true) {
+                    reportInfo('Date Now: ', Date.now());
+                    reportInfo('last Date: ', lastDate);
+                    reportInfo('dateDiff: ', dateDiff);
+                }
             }
         }, 5000)
     }
