@@ -1,17 +1,21 @@
 ﻿// ==UserScript==
-// @name        PriceForgedEquipment
-// @namespace   HVEquipPrice
-// @description Calculate material cost for forged Legendary items only
-// @match       http://*.hentaiverse.org/pages/showequip.php?eid=*&key=*
-// @match       https://hentaiverse.org/equip/*
-// @match       http://alt.hentaiverse.org/equip/*
+// @name         HV Price Forged Equipment
+// @author       carry0987
+// @namespace    https://github.com/carry0987
+// @support      https://github.com/carry0987/UserJS/issues
+// @version      1.0.0
+// @description  Calculate material cost for forged Legendary items only
+// @icon         https://carry0987.github.io/favicon.png
+// @match        http://*.hentaiverse.org/pages/showequip.php?eid=*&key=*
+// @match        https://hentaiverse.org/equip/*
+// @match        http://alt.hentaiverse.org/equip/*
 // @require     https://dl.dropboxusercontent.com/u/5046/static/hv_scripts/classToString.js?t=1
-// @version     1.01
-// @grant       none
-// @run-at      document-end
+// @license      MIT
+// @grant        none
+// @run-at       document-end
 // ==/UserScript==
 
-// Define costs in credits
+//Define costs in credits
 var costs = {
     CrystallizedPhazon: 190000,
     ShadeFragment: 9000,
@@ -153,19 +157,13 @@ var rangesDamage = {
     100: { midGradeQty: 0, highGradeQty: 6, catalystCost: catalystCost.Coruscating }
 };
 
-/******
-Init
-******/
-
-//ocument.body.appendChild(document.createElement('br'));
+/****** Init ******/
+//document.body.appendChild(document.createElement('br'));
 //var button = document.body.appendChild(document.createElement('div'));
-
 //var equipment = document.getElementById('equipment');
 var equipment = document.body;
 //var upgrades = equipment.getElementsByClassName("eu");
-
-var upgrades = equipment.querySelectorAll("#eu span");
-
+var upgrades = equipment.querySelectorAll('#eu span');
 var inp = document.createElement('input');
 inp.size = 2;
 inp.onkeyup = function() { futureCalc(this.value); };
@@ -175,36 +173,31 @@ if (!upgrades.length) {
     return;
 } else {
     /*
-  TODO pre-populate any missing stats by inserting a class='eu' element.
-  Pre-pop to forge Lv.0 will make all child methods work properly.
-  This requires a mapping of all possible stats on a piece on equipment to the corresponding 'mapping' variable.
-  Then foreach ( stat in statlist ) {
+    TODO pre-populate any missing stats by inserting a class='eu' element.
+    Pre-pop to forge Lv.0 will make all child methods work properly.
+    This requires a mapping of all possible stats on a piece on equipment to the corresponding 'mapping' variable.
+    Then foreach ( stat in statlist ) {
           if( !exists( mapping[ statmap[ stat ] ] ) } {
             append new 'eu' element for statmap[ stat ] + " Lv.0";
           }
-  */
-    equipment.style = "height:425px";
+    */
+    equipment.style = 'height:425px';
     var basicMaterialCost = getBasicMaterialCost();
-
     var output = {};
     var maxLevel = 0;
     var totalInvested = {};
     calcCost(-1);
 }
 
-/******
-Functions
-******/
+/****** Functions ******/
 function calcCost(levelOverride) {
     output = {};
     maxLevel = 0;
     for (var i = 0; i < upgrades.length; i++) {
         var upgradeStr = upgrades[i].innerHTML;
-
-        var upgradeIdentifier = upgradeStr.substring(0, upgradeStr.lastIndexOf(" "));
-
+        var upgradeIdentifier = upgradeStr.substring(0, upgradeStr.lastIndexOf(' '));
         if (mapping[upgradeIdentifier]) {
-            var upgradeLevel = parseInt(upgradeStr.substring(upgradeStr.lastIndexOf(" ") + 4, upgradeStr.length));
+            var upgradeLevel = parseInt(upgradeStr.substring(upgradeStr.lastIndexOf(' ') + 4, upgradeStr.length));
             if (mapping[upgradeIdentifier][1] && levelOverride >= 100) {
                 levelOverride = 100;
             } else if (!mapping[upgradeIdentifier][1] && levelOverride >= 50) {
@@ -212,7 +205,7 @@ function calcCost(levelOverride) {
             }
             if (levelOverride > 0) {
                 upgradeLevel = levelOverride;
-                upgradeStr = upgradeIdentifier + " Lv." + upgradeLevel;
+                upgradeStr = upgradeIdentifier + ' Lv.' + upgradeLevel;
             }
             var bindingCost = mapping[upgradeIdentifier][0];
             var isDamage = mapping[upgradeIdentifier][1];
@@ -229,42 +222,42 @@ function outputSummary(baseSummary) {
     if (Object.keys(output).length > 0) {
         var summary = upgradeSummary(output, basicMaterialCost, maxLevel);
         var html = document.createElement('div');
-        html.id = "calccost";
-        html.style = "margin:7px auto 2px; text-align:center";
+        html.id = 'calccost';
+        html.style = 'margin:7px auto 2px; text-align:center';
         var div = document.createElement('div');
-        div.style = "font-weight:bold";
-        div.innerHTML = "Cost Summary:";
+        div.style = 'font-weight:bold';
+        div.innerHTML = 'Cost Summary:';
         html.appendChild(div);
 
         var mg = document.createElement('span');
-        mg.className = "ep";
+        mg.className = 'ep';
         var hg = document.createElement('span');
-        hg.className = "ep";
+        hg.className = 'ep';
         var bi = document.createElement('span');
-        bi.className = "ep";
+        bi.className = 'ep';
         var ca = document.createElement('span');
-        ca.className = "ep";
+        ca.className = 'ep';
         var sp = document.createElement('span');
-        sp.className = "ep";
+        sp.className = 'ep';
         var tot = document.createElement('p');
-        tot.style = "color:#F00";
+        tot.style = 'color:#F00';
 
-        mg.innerHTML = "Mid-Grade " + credit(summary.midGrade);
+        mg.innerHTML = 'Mid-Grade ' + credit(summary.midGrade);
         html.appendChild(mg);
-        hg.innerHTML = " High-Grade " + credit(summary.highGrade);
+        hg.innerHTML = ' High-Grade ' + credit(summary.highGrade);
         html.appendChild(hg);
-        bi.innerHTML = " Binding " + credit(summary.binding);
+        bi.innerHTML = ' Binding ' + credit(summary.binding);
         html.appendChild(bi);
-        ca.innerHTML = "<br/> Catalyst " + credit(summary.catalyst);
+        ca.innerHTML = '<br/> Catalyst ' + credit(summary.catalyst);
         html.appendChild(ca);
-        sp.innerHTML = " Special " + credit(summary.special);
+        sp.innerHTML = ' Special ' + credit(summary.special);
         html.appendChild(sp);
         if (baseSummary) {
             totalInvested.summary = summary;
-            tot.innerHTML = "Total " + credit(upgradeTotal(summary));
+            tot.innerHTML = 'Total ' + credit(upgradeTotal(summary));
             html.appendChild(tot);
         } else {
-            tot.innerHTML = "Total " + credit(upgradeTotal(summary)) + " (" + credit(upgradeTotal(totalInvested.summary)) + ")";
+            tot.innerHTML = 'Total ' + credit(upgradeTotal(summary)) + ' (' + credit(upgradeTotal(totalInvested.summary)) + ')';
             html.appendChild(tot);
         }
 
@@ -273,60 +266,65 @@ function outputSummary(baseSummary) {
 }
 
 function appendTitle(elem, titleStr, upgradeLvl, costObj, baseSummary) {
-    var title = titleStr + " Lv." + upgradeLvl + "\n";
+    var title = titleStr + ' Lv.' + upgradeLvl + "\n";
     if (baseSummary) {
         totalInvested[titleStr] = costObj;
-        title += "Mid-Grade " + credit(costObj.midGrade) + "\n";
-        title += "High-Grade " + credit(costObj.highGrade) + "\n";
-        title += "Binding " + credit(costObj.binding) + "\n";
-        title += "Catalyst " + credit(costObj.catalyst) + "\n";
-        title += "Special " + credit(costObj.special) + "\n";
-        title += "Total " + credit(upgradeTotal(costObj));
+        title += 'Mid-Grade ' + credit(costObj.midGrade) + "\n";
+        title += 'High-Grade ' + credit(costObj.highGrade) + "\n";
+        title += 'Binding ' + credit(costObj.binding) + "\n";
+        title += 'Catalyst ' + credit(costObj.catalyst) + "\n";
+        title += 'Special ' + credit(costObj.special) + "\n";
+        title += 'Total ' + credit(upgradeTotal(costObj));
     } else {
-        // Override totalInvested for special when calculating future forge costs
+        //Override totalInvested for special when calculating future forge costs
         totalInvested[titleStr].special = totalInvested.summary.special;
-        title += "Mid-Grade " + credit(costObj.midGrade) + " (" + credit(totalInvested[titleStr].midGrade) + ")" + "\n";
-        title += "High-Grade " + credit(costObj.highGrade) + " (" + credit(totalInvested[titleStr].highGrade) + ")" + "\n";
-        title += "Binding " + credit(costObj.binding) + " (" + credit(totalInvested[titleStr].binding) + ")" + "\n";
-        title += "Catalyst " + credit(costObj.catalyst) + " (" + credit(totalInvested[titleStr].catalyst) + ")" + "\n";
-        title += "Special " + credit(costObj.special) + " (" + credit(totalInvested[titleStr].special) + ")" + "\n";
-        title += "Total " + credit(upgradeTotal(costObj)) + " (" + credit(upgradeTotal(totalInvested[titleStr])) + ")";
+        title += 'Mid-Grade ' + credit(costObj.midGrade) + ' (' + credit(totalInvested[titleStr].midGrade) + ')' + "\n";
+        title += 'High-Grade ' + credit(costObj.highGrade) + ' (' + credit(totalInvested[titleStr].highGrade) + ')' + "\n";
+        title += 'Binding ' + credit(costObj.binding) + ' (' + credit(totalInvested[titleStr].binding) + ')' + "\n";
+        title += 'Catalyst ' + credit(costObj.catalyst) + ' (' + credit(totalInvested[titleStr].catalyst) + ')' + "\n";
+        title += 'Special ' + credit(costObj.special) + ' (' + credit(totalInvested[titleStr].special) + ')' + "\n";
+        title += 'Total ' + credit(upgradeTotal(costObj)) + ' (' + credit(upgradeTotal(totalInvested[titleStr])) + ')';
     }
     elem.title = title;
-    elem.style = "cursor:help";
+    elem.style = 'cursor:help';
 }
 
 function calculateUpgradeCost(upgradeLevel, bindingCost, materialsType, isDamage) {
     var cost = new upgradeCost();
     for (var j = 0; j < upgradeLevel; j++) {
         var range = getRangeData(j, isDamage);
-        cost.midGrade += range.midGradeQty * basicMaterialCost.midGrade; // Mid Grade
-        cost.highGrade += range.highGradeQty * basicMaterialCost.highGrade; // High Grade
-        cost.catalyst += range.catalystCost; // catalyst
-        cost.special += basicMaterialCost.special; // special
+        //Mid Grade
+        cost.midGrade += range.midGradeQty * basicMaterialCost.midGrade;
+        //High Grade
+        cost.highGrade += range.highGradeQty * basicMaterialCost.highGrade;
+        //Catalyst
+        cost.catalyst += range.catalystCost;
+        //Special
+        cost.special += basicMaterialCost.special;
         if (j >= 5) {
-            cost.binding += bindingCost; // binding
+            //Binding
+            cost.binding += bindingCost;
         }
     }
     return cost;
 }
 
 function getBasicMaterialCost() {
-    // Taken from Hentaiverse Equipment Comparison 0.6.5.3
+    //Taken from Hentaiverse Equipment Comparison 0.6.5.3
 
     /*
     var nameList = document.getElementsByClassName("fd2");
     if(!nameList.length) {
         nameList = document.getElementsByClassName("fd4");
     }
- 
+
     var fullName = "";
     if(nameList.length) {
         fullName = [].map.call(nameList,function(e){return e.textContent;}).join(" ").trim().replace(/\b(?:The|Of)\b/g,function(e){return e.toLowerCase();});
     }
- 
+
     if( fullName === "" ) {
-        // if fd2 exists, use that. otherwise use fd4
+        //if fd2 exists, use that. otherwise use fd4
         if ( document.getElementsByClassName('fd2').length ) {
             fullName = hvElemToString( document.getElementsByClassName('fd2') );
         } else {
@@ -336,16 +334,19 @@ function getBasicMaterialCost() {
     */
     function getName(body) {
         var nameDiv;
-        if (typeof body.children[1] == 'undefined')
+        if (typeof body.children[1] == 'undefined') {
             return 'No such item';
+        }
         var showequip = body.children[1];
-        if (showequip.children.length == 3)
+        if (showequip.children.length == 3) {
             nameDiv = showequip.children[0].children[0];
-        else
+        } else {
             nameDiv = showequip.children[1].children[0];
+        }
         var name = nameDiv.children[0].textContent;
-        if (nameDiv.children.length == 3)
+        if (nameDiv.children.length == 3) {
             name += ' ' + nameDiv.children[2].textContent;
+        }
         return name;
     }
 
@@ -374,7 +375,7 @@ function getBasicMaterialCost() {
 
 }
 
-// TODO this is inefficient
+//TODO this is inefficient
 function getRangeData(level, isDamage) {
     if (isDamage) {
         for (var rangeDmg in rangesDamage) {
@@ -393,11 +394,11 @@ function getRangeData(level, isDamage) {
 
 function credit(credits) {
     if (credits >= 1000000) {
-        return (credits / 1000000).toFixed(2).replace(".00", "") + "m";
+        return (credits / 1000000).toFixed(2).replace('.00', '') + 'm';
     } else if (credits >= 10000) {
-        return (credits / 1000).toFixed(2).replace(".00", "") + "k";
+        return (credits / 1000).toFixed(2).replace('.00', '') + 'k';
     } else {
-        return credits + "c";
+        return credits + 'c';
     }
 }
 
@@ -430,7 +431,7 @@ function upgradeCost() {
 }
 
 function futureCalc(toLevel) {
-    document.getElementById("calccost").remove();
+    document.getElementById('calccost').remove();
     toLevel = parseInt(toLevel);
     if (isNaN(toLevel) || toLevel <= 0) {
         calcCost(-1);
