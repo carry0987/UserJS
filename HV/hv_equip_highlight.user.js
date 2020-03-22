@@ -3,7 +3,7 @@
 // @author       carry0987; ggxxsol(ggxxhy); hc br
 // @namespace    https://github.com/carry0987
 // @support      https://github.com/carry0987/UserJS/issues
-// @version      1.2.8
+// @version      1.3.0
 // @description  People always discern the color first, then to see word
 // @icon         https://e-hentai.org/favicon.ico
 // @include      https://hentaiverse.org/*
@@ -112,32 +112,35 @@ function mainhh() {
             equhide.style.cssText = `
             font-size: 15px;color: red;position: absolute;top: 652px;left: 2px;text-align: left;border: 1px solid rgb(92, 13, 17);padding: 4px;cursor: pointer;-webkit-user-select: none;-khtml-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none
             `;
+            var showConfig
+            showConfig = checkHide()
             try {
-                if (!localStorage.hideflag) {
-                    localStorage.hideflag = 'Display lock equipment'
+                if (!getValue('hideflag')) {
+                    setValue('hideflag', 1)
                 }
-                if (localStorage.hideflag != 'Display lock equipment') {
+                if (getValue('hideflag', true) != 1) {
                     equipdiv = document.querySelectorAll('.il')
                     for (i = 0; i < equipdiv.length; i++) {
                         equipdiv[i].parentNode.style.cssText = 'display:none;'
                     }
                 }
-                equhide.innerHTML = 'NOW ' + localStorage.hideflag
+                equhide.innerHTML = 'NOW ' + showConfig
             } catch (e) { alert(e) }
             equhide.onclick = function() {
                 equipdiv = document.querySelectorAll('.il')
-                if (localStorage.hideflag == 'Hide the locking equipment') {
-                    localStorage.hideflag = 'Display lock equipment'
+                if (getValue('hideflag', true) == 0) {
+                    setValue('hideflag', 1)
                     for (i = 0; i < equipdiv.length; i++) {
                         equipdiv[i].parentNode.style.cssText = 'display:block;'
                     }
                 } else {
-                    localStorage.hideflag = 'Hide the locking equipment'
+                    setValue('hideflag', 0)
                     for (i = 0; i < equipdiv.length; i++) {
                         equipdiv[i].parentNode.style.cssText = 'display:none;'
                     }
                 }
-                this.innerHTML = 'NOW ' + localStorage.hideflag
+                showConfig = checkHide()
+                this.innerHTML = 'NOW ' + showConfig
             }
             document.body.appendChild(equhide);
             break;
@@ -574,4 +577,16 @@ function mainhh() {
             eqc1 = eqc1.concat('<span style=\"background:#fbc93e\;color:#000000" >★Peerless★</span>');
         }
     }
+}
+
+function setValue(item, value) {
+    window.localStorage[item] = (typeof value === 'string') ? value : JSON.stringify(value);
+}
+
+function getValue(item, toJSON) {
+    return (window.localStorage[item]) ? ((toJSON) ? JSON.parse(window.localStorage[item]) : window.localStorage[item]) : null;
+}
+
+function checkHide() {
+    return (getValue('hideflag', true) == 0) ? 'Hide the locking equipment' : 'Display lock equipment';
 }
