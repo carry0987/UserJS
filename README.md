@@ -9,7 +9,7 @@ Just storge my user script for Tampermonkey
 ### EH
 | Name | Raw | Version | Description |
 | --- | --- | --- | --- |
-| [EH Hath Seller](EH/eh_hath_seller.user.js) | [Raw](https://github.com/carry0987/UserJS/raw/master/EH/eh_hath_seller.user.js) | 1.2.5 | Auto insert credit price |
+| [EH Hath Seller](EH/eh_hath_seller.user.js) | [Raw](https://github.com/carry0987/UserJS/raw/master/EH/eh_hath_seller.user.js) | 1.2.6 | Auto insert credit price |
 | [EH Hath Summary](EH/eh_hath_summary.user.js) | [Raw](https://github.com/carry0987/UserJS/raw/master/EH/eh_hath_summary.user.js) | 1.0.0 | Add extra summary table row on Hath page |
 | [EH How Rich Am I](EH/eh_how_rich_am_i.user.js) | [Raw](https://github.com/carry0987/UserJS/raw/master/EH/eh_how_rich_am_i.user.js) | 1.1.0 | Shows how many Credits/Hath/GP you have, and displays exchange rate of Hath under the Overview tab |
 | [EH Gallery Overview](EH/eh_overview.user.js) | [Raw](https://github.com/carry0987/UserJS/raw/master/EH/eh_overview.user.js) | 1.0.0 | Appends "Hath/GP Exchange" and "Credit Log" to "Overview" under the "My Home" tab |
@@ -19,19 +19,19 @@ Just storge my user script for Tampermonkey
 ### EX
 | Name | Raw | Version | Description |
 | --- | --- | --- | --- |
-| [ExH EveryDay](EX/ex_everyday.user.js) | [Raw](https://github.com/carry0987/UserJS/raw/master/EX/ex_everyday.user.js) | 1.1.0 | Get daily bonus reward even in ExHentai & HV |
+| [ExH EveryDay](EX/ex_everyday.user.js) | [Raw](https://github.com/carry0987/UserJS/raw/master/EX/ex_everyday.user.js) | 1.2.3 | Get daily bonus reward even in ExHentai & HV |
 
 ### HV
 | Name | Raw | Version | Description |
 | --- | --- | --- | --- |
-| [HV Trainer](HV/hv_trainer.user.js) | [Raw](https://github.com/carry0987/UserJS/raw/master/HV/hv_trainer.user.js) | 1.6.0 | Start training automatically and display process on top bar |
-| [HV Encounter](HV/hv_encounter.user.js) | [Raw](https://github.com/carry0987/UserJS/raw/master/HV/hv_encounter.user.js) | 1.5.4 | Auto report when encounter monster |
+| [HV Trainer](HV/hv_trainer.user.js) | [Raw](https://github.com/carry0987/UserJS/raw/master/HV/hv_trainer.user.js) | 1.6.1 | Start training automatically and display process on top bar |
+| [HV Encounter](HV/hv_encounter.user.js) | [Raw](https://github.com/carry0987/UserJS/raw/master/HV/hv_encounter.user.js) | 1.5.5 | Auto report when encounter monster |
 | [HV Challenge](HV/hv_challenge.user.js) | [Raw](https://github.com/carry0987/UserJS/raw/master/HV/hv_challenge.user.js) | 1.1.0 | Easily change the challenge level |
 | [HV How Rich Am I ?](HV/hv_how_rich_am_i.user.js) | [Raw](https://github.com/carry0987/UserJS/raw/master/HV/hv_how_rich_am_i.user.js) | 1.4.5 | Show how many Credits you have |
 | [HV Equipment Repairer](HV/hv_equip_repairer.user.js) | [Raw](https://github.com/carry0987/UserJS/raw/master/HV/hv_equip_repairer.user.js) | 1.2.0 | Repair equipments automatically |
 | [HV Equipment Highlight](HV/hv_equip_highlight.user.js) | [Raw](https://github.com/carry0987/UserJS/raw/master/HV/hv_equip_highlight.user.js) | 1.2.8 | People always discern the color first, then to see word |
-| [HV Auto Refresh](HV/hv_auto_refresh.user.js) | [Raw](https://github.com/carry0987/UserJS/raw/master/HV/hv_auto_refresh.user.js) | 1.0.0 | Auto refresh when battle finished |
-| [HV Item Chinese TR](HV/hv_chinese_translation.user.js) | [Raw](https://github.com/carry0987/UserJS/raw/master/HV/hv_chinese_translation.user.js) | 1.0.6 | Translate HV items into traditional chinese |
+| [HV Auto Refresh](HV/hv_auto_refresh.user.js) | [Raw](https://github.com/carry0987/UserJS/raw/master/HV/hv_auto_refresh.user.js) | 1.0.6 | Auto refresh when battle finished |
+| [HV Item Chinese TR](HV/hv_chinese_translation.user.js) | [Raw](https://github.com/carry0987/UserJS/raw/master/HV/hv_chinese_translation.user.js) | 1.0.9 | Translate HV items into traditional chinese |
 
 ### Test
 | Name | Raw | Version | Description |
