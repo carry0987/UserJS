@@ -3,15 +3,13 @@
 // @author       carry0987
 // @namespace    https://github.com/carry0987
 // @support      https://github.com/carry0987/UserJS/issues
-// @version      1.4.6
+// @version      1.4.7
 // @description  Show how many Credits you have
 // @icon         https://carry0987.github.io/favicon.png
 // @include      https://hentaiverse.org/?s=Character&ss=ch
 // @include      https://hentaiverse.org/
-// @include      http*://alt.hentaiverse.org/*
+// @include      http*://alt.hentaiverse.org/
 // @include      http*://alt.hentaiverse.org/?s=Character&ss=ch
-// @include      http*://alt.hentaiverse.org/?s=Battle&ss=ba*
-// @include      http*://alt.hentaiverse.org/?s=Battle&ss=ar
 // ==/UserScript==
 
 //Check if is not in battle
