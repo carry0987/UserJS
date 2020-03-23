@@ -3,13 +3,17 @@
 // @author       carry0987
 // @namespace    https://github.com/carry0987
 // @support      https://github.com/carry0987/UserJS/issues
-// @version      1.5.6
+// @version      1.5.7
 // @description  Auto report when encounter monster
 // @icon         https://carry0987.github.io/favicon.png
 // @match        https://hentaiverse.org/?s=Character&ss=ch
 // @match        https://hentaiverse.org/
 // @match        https://hentaiverse.org/?s=Battle&ss=ba*
 // @match        https://hentaiverse.org/?s=Battle&ss=ar
+// @include      http*://alt.hentaiverse.org/*
+// @include      http*://alt.hentaiverse.org/?s=Character&ss=ch
+// @include      http*://alt.hentaiverse.org/?s=Battle&ss=ba*
+// @include      http*://alt.hentaiverse.org/?s=Battle&ss=ar
 // @grant        GM_xmlhttpRequest
 // @connect      *
 // @license      MIT
