@@ -1,15 +1,11 @@
 // ==UserScript==
-// @name         [HV]AutoAttack
-// @name:zh-TW   [HV]AutoAttack
-// @name:zh-CN   [HV]AutoAttack
-// @description  HV auto attack script, for the first user, should configure before use it.
-// @description:zh-CN HV自动打怪脚本，初次使用，请先设置好选项，请确认字体设置正常
-// @description:zh-TW HV自動打怪腳本，初次使用，請先設置好選項，請確認字體設置正常
-// @version      2.90.0
-// @author       dodying
-// @namespace    https://github.com/dodying/
-// @supportURL   https://github.com/dodying/UserJs/issues
-// @icon         https://raw.githubusercontent.com/dodying/UserJs/master/Logo.png
+// @name         HV AutoAttack
+// @author       carry0987, dodying
+// @namespace    https://github.com/carry0987
+// @support      https://github.com/carry0987/UserJS/issues
+// @version      1.0.0
+// @description  HV auto attack script, for the first user, should configure before use it
+// @icon         https://carry0987.github.io/favicon.png
 // @include      http*://hentaiverse.org/*
 // @include      http://alt.hentaiverse.org/*
 // @include      https://e-hentai.org/*
@@ -26,6 +22,7 @@
 // @grant        unsafeWindow
 // @run-at       document-end
 // ==/UserScript==
+
 /* eslint-disable camelcase */
 (function init() {
     if (window.location.host === 'e-hentai.org') {
@@ -140,7 +137,8 @@
         if (g('option').idleArena) setTimeout(idleArena, (g('option').idleArenaTime * (Math.random() * 20 + 90) / 100) * 1000)
     }
 })()
-// 通用//
+
+// 通用 //
 function getKeys(objArr, prop) {
     var out = []
     objArr.forEach(function(_objArr) {
@@ -171,7 +169,8 @@ function time(e, stamp) {
     }
 }
 
-function gE(ele, mode, parent) { // 获取元素
+// 获取元素
+function gE(ele, mode, parent) {
     if (typeof ele === 'object') {
         return ele
     } else if (mode === undefined && parent === undefined) {
@@ -183,19 +182,23 @@ function gE(ele, mode, parent) { // 获取元素
     }
 }
 
-function cE(name) { // 创建元素
+// 创建元素
+function cE(name) {
     return document.createElement(name)
 }
 
-function isOn(id) { // 是否可以施放技能/使用物品
-    if (id * 1 > 10000) { // 使用物品
+// 是否可以施放技能/使用物品
+function isOn(id) {
+    // 使用物品
+    if (id * 1 > 10000) {
         return gE('.bti3>div[onmouseover*="' + id + '"]')
     } else { // 施放技能
         return (gE(id) && gE(id).style.opacity !== '0.5') ? gE(id) : false
     }
 }
 
-function setValue(item, value) { // 储存数据
+// 储存数据
+function setValue(item, value) {
     if (typeof GM_setValue === 'undefined') {
         window.localStorage['hvAA-' + item] = (typeof value === 'string') ? value : JSON.stringify(value)
     } else {
@@ -203,7 +206,8 @@ function setValue(item, value) { // 储存数据
     }
 }
 
-function getValue(item, toJSON) { // 读取数据
+// 读取数据
+function getValue(item, toJSON) {
     if (typeof GM_getValue === 'undefined' || !GM_getValue(item, null)) {
         item = 'hvAA-' + item
         return (item in window.localStorage) ? ((toJSON) ? JSON.parse(window.localStorage[item]) : window.localStorage[item]) : null
@@ -212,7 +216,8 @@ function getValue(item, toJSON) { // 读取数据
     }
 }
 
-function delValue(item) { // 删除数据
+// 删除数据
+function delValue(item) {
     if (typeof item === 'string') {
         if (typeof GM_deleteValue === 'undefined') {
             window.localStorage.removeItem('hvAA-' + item)
@@ -235,12 +240,14 @@ function delValue(item) { // 删除数据
     }
 }
 
-function goto() { // 前进
+// 前进
+function goto() {
     window.location.href = window.location.search
     setTimeout(goto, 5000)
 }
 
-function g(key, value) { // 全局变量
+// 全局变量
+function g(key, value) {
     var hvAA = window.hvAA || {}
     if (key === undefined && value === undefined) {
         return hvAA
@@ -252,7 +259,8 @@ function g(key, value) { // 全局变量
     }
 }
 
-function post(href, func, parm, type) { // post
+// post
+function post(href, func, parm, type) {
     var xhr = new window.XMLHttpRequest()
     xhr.open(parm ? 'POST' : 'GET', href)
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8')
@@ -278,13 +286,15 @@ function post(href, func, parm, type) { // post
     xhr.send(parm)
 }
 
-function objArrSort(key) { // 对象数组排序函数，从小到大排序
+// 对象数组排序函数，从小到大排序
+function objArrSort(key) {
     return function(obj1, obj2) {
         return (obj2[key] < obj1[key]) ? 1 : (obj2[key] > obj1[key]) ? -1 : 0
     }
 }
 
-function objSort(obj) { // 对象排序
+// 对象排序
+function objSort(obj) {
     var objNew = {}
     var arr = Object.keys(obj).sort()
     arr.forEach(function(key) {
@@ -313,7 +323,8 @@ function openUrl(url, newTab) {
     a.click()
 }
 
-function addStyle(lang) { // CSS
+// CSS
+function addStyle(lang) {
     var langStyle = gE('head').appendChild(cE('style'))
     langStyle.className = 'hvAA-LangStyle'
     langStyle.textContent = 'l' + lang + '{display:inline!important;}'
@@ -387,7 +398,8 @@ function addStyle(lang) { // CSS
     optionButton(lang)
 }
 
-function optionButton(lang) { // 配置按钮
+// 配置按钮
+function optionButton(lang) {
     var optionButton = gE('body').appendChild(cE('div'))
     optionButton.className = 'hvAAButton'
     optionButton.onclick = function() {
@@ -401,7 +413,8 @@ function optionButton(lang) { // 配置按钮
     }
 }
 
-function optionBox() { // 配置界面
+// 配置界面
+function optionBox() {
     var optionBox = gE('body').appendChild(cE('div'))
     optionBox.id = 'hvAABox'
     optionBox.innerHTML = [
