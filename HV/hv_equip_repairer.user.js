@@ -3,7 +3,7 @@
 // @author       carry0987
 // @namespace    https://github.com/carry0987
 // @support      https://github.com/carry0987/UserJS/issues
-// @version      1.2.0
+// @version      1.2.1
 // @description  Repair equipments automatically
 // @icon         https://carry0987.github.io/favicon.png
 // @include      http*://hentaiverse.org/?s=Forge&ss=re*
@@ -16,28 +16,28 @@
     if (!getElem('#filterbar')) return
     var material = [{
             'name': 'Scrap Cloth',
-            'code': '60051',
-            'cost': '100'
+            'code': 60051,
+            'cost': 100
         },
         {
             'name': 'Scrap Leather',
-            'code': '60052',
-            'cost': '100'
+            'code': 60052,
+            'cost': 100
         },
         {
             'name': 'Scrap Metal',
-            'code': '60053',
-            'cost': '100'
+            'code': 60053,
+            'cost': 100
         },
         {
             'name': 'Scrap Wood',
-            'code': '60054',
-            'cost': '100'
+            'code': 60054,
+            'cost': 100
         },
         {
             'name': 'Energy Cell',
-            'code': '60071',
-            'cost': '200'
+            'code': 60071,
+            'cost': 200
         }
     ]
     var materialBox = document.getElementById('repairall')
