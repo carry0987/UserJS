@@ -9,7 +9,6 @@
 // @match        https://shopee.tw/*
 // @connect      *
 // @license      MIT
-// @run-at       document-end
 // @noframes
 // ==/UserScript==
 
@@ -75,10 +74,15 @@ function createElem(name, elemID = false, elemClass = false) {
 (function() {
     checkNew();
     function checkNew() {
-        var main = document;
-        if (main) {
-            main.appendChild(createElem('span', 'trainer'));
+        var get_history = getHistory();
+        clearHistory(get_history);
+        /*
+        var main = getElem('#shopee-chat-embedded');
+        main.onclick = function() {
+            var get_history = getHistory();
+            clearHistory(get_history);
+            reportInfo('HAHA');
         }
-        reportInfo(main);
+        */
     }
 })()
