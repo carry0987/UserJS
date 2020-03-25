@@ -3,10 +3,11 @@
 // @author       carry0987
 // @namespace    https://github.com/carry0987
 // @support      https://github.com/carry0987/UserJS/issues
-// @version      1.0.6
+// @version      1.0.7
 // @description  Auto refresh when battle finished
 // @icon         https://carry0987.github.io/favicon.png
 // @match        http*://hentaiverse.org/*
+// @match        http*://alt.hentaiverse.org/*
 // @connect      *
 // @license      MIT
 // @noframes
