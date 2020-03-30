@@ -3,7 +3,7 @@
 // @author       carry0987
 // @namespace    https://github.com/carry0987
 // @support      https://github.com/carry0987/UserJS/issues
-// @version      1.2.6
+// @version      1.2.7
 // @description  Auto insert credit price
 // @icon         https://carry0987.github.io/favicon.png
 // @match        https://e-hentai.org/exchange.php?t=hath
@@ -25,6 +25,8 @@
             var get_count = parseInt(ask_count.value);
             if (get_count >= 1) {
                 ask_price.value = get_price;
+            } else {
+                ask_price.value = 0;
             }
         }
     }
