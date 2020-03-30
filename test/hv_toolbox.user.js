@@ -907,7 +907,8 @@
                             t.selc = 0;
                             t.sell = 0;
                             if ($i("cntr")) {
-                                ($i("cntr").textContent = "Selected: " + t.sell); }
+                                ($i("cntr").textContent = "Selected: " + t.sell);
+                            }
                             for (var b = 0, tb = $qa(".equip_select_one, .item_select_one"), lb = tb.length; b < lb; tb[b++].checked = false);
                             for (var a = 0, ta = $qa(".equip_count_one, .item_count_one"), la = ta.length; a < la; ta[a++].value = "");
                         }
@@ -1081,8 +1082,12 @@
                         $tb.sync();
 
                         showResults(t.sell * mO.all.recipientS.length);
-                        var waitForToken = setInterval(function() { if (t.mmtoken !== "") { clearInterval(waitForToken);
-                                mO.init(); } }, 150);
+                        var waitForToken = setInterval(function() {
+                            if (t.mmtoken !== "") {
+                                clearInterval(waitForToken);
+                                mO.init();
+                            }
+                        }, 150);
                     });
                     $m.but("Help", showTags, "imb", true);
                     $m.but("Cancel");
@@ -1104,8 +1109,12 @@
                                 }
                             }
                         }
-                        var waitForToken = setInterval(function() { if (t.storetoken !== "") { clearInterval(waitForToken);
-                                start(); } }, 150);
+                        var waitForToken = setInterval(function() {
+                            if (t.storetoken !== "") {
+                                clearInterval(waitForToken);
+                                start();
+                            }
+                        }, 150);
                     });
                     $m.but("Cancel");
                 }
@@ -1714,12 +1723,18 @@
                 }
                 var imbF = $e("input", imb, { type: "search", id: "imb_F", name: "filter", place: "filter", value: $tb.templates.filter });
 
-                imbF.oninput = function() { imbF.style.cssText = "width: 20em";
-                    butFilter(imbF.value); };
-                imbF.onfocus = function() { imbF.style.cssText = "width: 20em";
-                    butFilter(imbF.value); };
-                imbF.onblur = function() { imbF.style.cssText = "";
-                    butFilter(imbF.value); };
+                imbF.oninput = function() {
+                    imbF.style.cssText = "width: 20em";
+                    butFilter(imbF.value);
+                };
+                imbF.onfocus = function() {
+                    imbF.style.cssText = "width: 20em";
+                    butFilter(imbF.value);
+                };
+                imbF.onblur = function() {
+                    imbF.style.cssText = "";
+                    butFilter(imbF.value);
+                };
                 imbF.addEventListener("keyup", function(e) { e.stopPropagation(); }, true);
                 imbF.addEventListener("keydown", function(e) { e.stopPropagation(); }, true);
                 imbF.addEventListener("keypress", function(e) { e.stopPropagation(); }, true);
