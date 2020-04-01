@@ -3,7 +3,7 @@
 // @author       carry0987
 // @namespace    https://github.com/carry0987
 // @support      https://github.com/carry0987/UserJS/issues
-// @version      1.5.7
+// @version      1.5.8
 // @description  Auto report when encounter monster
 // @icon         https://carry0987.github.io/favicon.png
 // @match        https://hentaiverse.org/?s=Character&ss=ch
@@ -25,6 +25,7 @@ const DEBUG = false;
 const six_hr = 2.16e+7;
 const twelve_hr = 4.32e+7;
 const recheck_times = 60000;
+const alt_hv = false;
 
 class Cookie {
     constructor(cookie = document.cookie) {
@@ -66,7 +67,11 @@ const onload = (resp) => {
         var link = resp.responseText.match(/encounter=(.*?)=/g);
         setValue('Final Encounter', new Date().toJSON());
         countEncounter();
-        window.open('https://hentaiverse.org/?s=Battle&ss=ba&'+link[0], '_self');
+        if (alt_hv === true) {
+            window.open('http://alt.hentaiverse.org/?s=Battle&ss=ba&'+link[0], '_self');
+        } else {
+            window.open('https://hentaiverse.org/?s=Battle&ss=ba&'+link[0], '_self');
+        }
     }
 }
 
