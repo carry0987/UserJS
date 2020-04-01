@@ -1914,7 +1914,7 @@
                     cbO.onchange = function() {
                         var countInput = $q("[placeholder='count']", t.i[this.id].elem);
                         if (this.checked) {
-                            // countInput.value = t.i[this.id].count;
+                            //countInput.value = t.i[this.id].count;
                             countInput.value = "1";
                         } else {
                             countInput.value = "";
