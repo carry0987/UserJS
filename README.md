@@ -5,6 +5,7 @@ Just storge my user script for Tampermonkey
 | Name | Raw | Version | Description |
 | --- | --- | --- | --- |
 | [Rutracker Auto Thanks](Tool/rutracker_auto_thanks.user.js) | [Raw](https://github.com/carry0987/UserJS/raw/master/Tool/rutracker_auto_thanks.user.js) | 1.1.5 | Auto thanks to the OP when download the torrent |
+| [Google Photos Show File Title](Tool/google_photo_title.user.js) | [Raw](https://github.com/carry0987/UserJS/raw/master/Tool/google_photo_title.user.js) | 1.0.2 | Display the title of file into header |
 
 ### EH
 | Name | Raw | Version | Description |
