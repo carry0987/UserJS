@@ -36,7 +36,7 @@ const material = 'feath';
         getEnchant.onclick = function() {
             var confirm_enchant = confirm('Featherweight All: 7 ?');
             if (confirm_enchant == true) {
-                repairEqupiment(material);
+                enchantEqupiment(material);
             } else {
                 return;
             }
@@ -57,8 +57,8 @@ function buyMaterial(code, amount, cost, token) {
     xhr.onload = function() {}
 }
 
-//Repair all equipment
-function repairEqupiment(material) {
+//Enchant all equipment
+function enchantEqupiment(material) {
     var materialsList = document.querySelectorAll('#repairall+div span');
     var xhr = new window.XMLHttpRequest();
     xhr.open('GET', window.location.origin + '/?s=Bazaar&ss=is&filter=ma');
