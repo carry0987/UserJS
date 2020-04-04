@@ -3,13 +3,16 @@
 // @author       carry0987
 // @namespace    https://github.com/carry0987
 // @support      https://github.com/carry0987/UserJS/issues
-// @version      1.0.2
+// @version      1.0.3
 // @description  Display the title of file into header
 // @icon         https://carry0987.github.io/favicon.png
 // @match        https://photos.google.com/photo/*
 // ==/UserScript==
 
 var stop_title;
+const debug = false;
+const auto_copy = false;
+
 (function() {
     'use strict';
     if (document.body.classList.contains('gped-handled')) {
@@ -44,8 +47,13 @@ var stop_title;
             }
         }
         if (title_list.length > 1) {
-            reportInfo(title_list[0]);
+            if (debug === true) {
+                reportInfo(title_list[0]);
+            }
             document.title = title_list[0];
+            if (auto_copy === true) {
+                autoCopy(title_list[0]);
+            }
             stop_title = true;
         } else {
             stop_title = false;
@@ -83,4 +91,14 @@ function getElem(ele, mode, parent) {
 function reportInfo(vars, showType = false) {
     if (showType === true) console.log(typeof vars);
     console.log(vars);
+}
+
+//Copy to clipboard
+function autoCopy(str) {
+    var el = document.createElement('textarea');
+    el.value = str;
+    document.body.appendChild(el);
+    el.select();
+    document.execCommand('copy');
+    document.body.removeChild(el);
 }
