@@ -36,7 +36,7 @@ const material = 'feath';
         getEnchant.onclick = function() {
             var confirm_enchant = confirm('Featherweight All: 7 ?');
             if (confirm_enchant == true) {
-                enchantEqupiment(material);
+                enchantEqupiment(equipList, material);
             } else {
                 return;
             }
@@ -45,12 +45,12 @@ const material = 'feath';
 })()
 
 //Purchase materials
-function buyMaterial(code, amount, cost, token) {
+function buyMaterial(code, material) {
     var xhr = 'xhr_Buy' + Math.random().toString();
     xhr = new window.XMLHttpRequest();
     xhr.open('POST', window.location.origin + '/?s=Bazaar&ss=is&filter=ma');
     //shop_pane: Buy, item_pane: Sell
-    var parm = 'storetoken=' + token + '&select_mode=shop_pane&select_item=' + code + '&select_count=' + amount;
+    var parm = 'select_item=' + code + '&enchantment=' + material;
     xhr.setRequestHeader('Accept', 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8');
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     xhr.send(parm);
@@ -58,8 +58,7 @@ function buyMaterial(code, amount, cost, token) {
 }
 
 //Enchant all equipment
-function enchantEqupiment(material) {
-    var materialsList = document.querySelectorAll('#repairall+div span');
+function enchantEqupiment(equip, material) {
     var xhr = new window.XMLHttpRequest();
     xhr.open('GET', window.location.origin + '/?s=Bazaar&ss=is&filter=ma');
     xhr.setRequestHeader('Accept', 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8');
@@ -67,7 +66,7 @@ function enchantEqupiment(material) {
     xhr.responseType = 'document';
     xhr.onload = function() {
         var token = xhr.response.querySelector('input[name="storetoken"]').value;
-        if (materialsList.length > 0) {
+        if (equip.length > 0) {
             for (var i = 0; i < materialsList.length; i++) {
                 var amount = materialsList[i].innerHTML.match(/\d+/)[0];
                 var code = material[materialsName2Code(materialsList[i].innerHTML.match(/\d+x (.*)/)[1])].code;

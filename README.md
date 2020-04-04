@@ -30,7 +30,6 @@ Just storge my user script for Tampermonkey
 | [HV Challenge](HV/hv_challenge.user.js) | [Raw](https://github.com/carry0987/UserJS/raw/master/HV/hv_challenge.user.js) | 1.1.0 | Easily change the challenge level |
 | [HV How Rich Am I ?](HV/hv_how_rich_am_i.user.js) | [Raw](https://github.com/carry0987/UserJS/raw/master/HV/hv_how_rich_am_i.user.js) | 1.4.7 | Show how many Credits you have |
 | [HV Equipment Repairer](HV/hv_equip_repairer.user.js) | [Raw](https://github.com/carry0987/UserJS/raw/master/HV/hv_equip_repairer.user.js) | 1.2.0 | Repair equipments automatically |
-| [HV Equipment Enchanter](HV/hv_equip_enchanter.user.js) | [Raw](https://github.com/carry0987/UserJS/raw/master/HV/hv_equip_enchanter.user.js) | 1.0.0 | Enchant all equipments automatically |
 | [HV Equipment Highlight](HV/hv_equip_highlight.user.js) | [Raw](https://github.com/carry0987/UserJS/raw/master/HV/hv_equip_highlight.user.js) | 1.3.0 | People always discern the color first, then to see word |
 | [HV Auto Refresh](HV/hv_auto_refresh.user.js) | [Raw](https://github.com/carry0987/UserJS/raw/master/HV/hv_auto_refresh.user.js) | 1.0.6 | Auto refresh when battle finished |
 | [HV Item Chinese TR](HV/hv_chinese_translation.user.js) | [Raw](https://github.com/carry0987/UserJS/raw/master/HV/hv_chinese_translation.user.js) | 1.0.9 | Translate HV items into traditional chinese |
