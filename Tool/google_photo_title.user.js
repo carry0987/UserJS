@@ -3,7 +3,7 @@
 // @author       carry0987
 // @namespace    https://github.com/carry0987
 // @support      https://github.com/carry0987/UserJS/issues
-// @version      1.0.3
+// @version      1.0.4
 // @description  Display the title of file into header
 // @icon         https://carry0987.github.io/favicon.png
 // @match        https://photos.google.com/photo/*
@@ -100,5 +100,5 @@ function autoCopy(str) {
     document.body.appendChild(el);
     el.select();
     document.execCommand('copy');
-    document.body.removeChild(el);
+    //document.body.removeChild(el);
 }
