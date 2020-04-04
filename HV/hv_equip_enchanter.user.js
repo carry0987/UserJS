@@ -3,7 +3,7 @@
 // @author       carry0987
 // @namespace    https://github.com/carry0987
 // @support      https://github.com/carry0987/UserJS/issues
-// @version      1.0.0
+// @version      1.0.1
 // @description  Enchant all equipments automatically
 // @icon         https://carry0987.github.io/favicon.png
 // @include      http*://hentaiverse.org/?s=Forge&ss=en*
@@ -29,21 +29,19 @@ const material = 'feath';
             <span id="auto_enchant" style="color: #0382dc; cursor: pointer; font-size: medium">Auto Enchant All</span>
         </div>
         `;
-        //parentElement
         enchantBox.insertAdjacentHTML('afterend', add_box);
     }
     var getEnchant = document.getElementById('auto_enchant');
-    /*
     if (getEnchant) {
         getEnchant.onclick = function() {
-            var confirm_purchase = confirm('Total Cost: ' + getTotalCost(material));
-            if (confirm_purchase == true) {
+            var confirm_enchant = confirm('Featherweight All: 7 ?');
+            if (confirm_enchant == true) {
                 repairEqupiment(material);
             } else {
                 return;
             }
         }
-    }*/
+    }
 })()
 
 //Purchase materials
