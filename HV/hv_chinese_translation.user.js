@@ -3,7 +3,7 @@
 // @author       ggxxsol(ggxxhy); mbbdzz; hc br; carry0987
 // @namespace    https://github.com/carry0987
 // @support      https://github.com/carry0987/UserJS/issues
-// @version      1.1.0
+// @version      1.1.1
 // @description  Translate HentaiVerse items into traditional chinese
 // @icon         https://e-hentai.org/favicon.ico
 // @include      https://hentaiverse.org/*
@@ -30,11 +30,16 @@ var torep = new Array();
 var repby = new Array();
 
 function mainhh() {
-    if (getLocation.match('hentaiverse.org/equip/') || getLocation.match('hentaiverse.org/pages/showequip.php')) {
+    if (getLocation.test('://hentaiverse.org/equip/') || getLocation.test('://hentaiverse.org/pages/showequip.php')) {
+        html = eqmthh(document.body);
+        document.body.innerHTML = html;
+        return
+    } else if (getLocation.test('://alt.hentaiverse.org/equip/') || getLocation.test('://alt.hentaiverse.org/pages/showequip.php')) {
         html = eqmthh(document.body);
         document.body.innerHTML = html;
         return
     }
+
     var lklist = new Array();
     //背包0
     lklist = lklist.concat('Character&ss=in')
