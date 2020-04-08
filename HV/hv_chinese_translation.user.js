@@ -3,7 +3,7 @@
 // @author       ggxxsol(ggxxhy); mbbdzz; hc br; carry0987
 // @namespace    https://github.com/carry0987
 // @support      https://github.com/carry0987/UserJS/issues
-// @version      1.1.1
+// @version      1.1.2
 // @description  Translate HentaiVerse items into traditional chinese
 // @icon         https://e-hentai.org/favicon.ico
 // @include      https://hentaiverse.org/*
