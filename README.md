@@ -32,7 +32,7 @@ Just storge my user script for Tampermonkey
 | [HV Equipment Repairer](HV/hv_equip_repairer.user.js) | [Raw](https://github.com/carry0987/UserJS/raw/master/HV/hv_equip_repairer.user.js) | 1.2.0 | Repair equipments automatically |
 | [HV Equipment Highlight](HV/hv_equip_highlight.user.js) | [Raw](https://github.com/carry0987/UserJS/raw/master/HV/hv_equip_highlight.user.js) | 1.3.0 | People always discern the color first, then to see word |
 | [HV Auto Refresh](HV/hv_auto_refresh.user.js) | [Raw](https://github.com/carry0987/UserJS/raw/master/HV/hv_auto_refresh.user.js) | 1.0.6 | Auto refresh when battle finished |
-| [HV Item Chinese TR](HV/hv_chinese_translation.user.js) | [Raw](https://github.com/carry0987/UserJS/raw/master/HV/hv_chinese_translation.user.js) | 1.0.9 | Translate HV items into traditional chinese |
+| [HV Item Chinese TR](HV/hv_chinese_translation.user.js) | [Raw](https://github.com/carry0987/UserJS/raw/master/HV/hv_chinese_translation.user.js) | 1.1.1 | Translate HV items into traditional chinese |
 
 ### Test
 | Name | Raw | Version | Description |

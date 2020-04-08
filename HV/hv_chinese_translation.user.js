@@ -30,11 +30,11 @@ var torep = new Array();
 var repby = new Array();
 
 function mainhh() {
-    if (getLocation.test('://hentaiverse.org/equip/') || getLocation.test('://hentaiverse.org/pages/showequip.php')) {
+    if (getLocation.match('://hentaiverse.org/equip/') || getLocation.match('://hentaiverse.org/pages/showequip.php')) {
         html = eqmthh(document.body);
         document.body.innerHTML = html;
         return
-    } else if (getLocation.test('://alt.hentaiverse.org/equip/') || getLocation.test('://alt.hentaiverse.org/pages/showequip.php')) {
+    } else if (getLocation.match('://alt.hentaiverse.org/equip/') || getLocation.match('://alt.hentaiverse.org/pages/showequip.php')) {
         html = eqmthh(document.body);
         document.body.innerHTML = html;
         return
