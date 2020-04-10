@@ -3,7 +3,7 @@
 // @author       carry0987
 // @namespace    https://github.com/carry0987
 // @support      https://github.com/carry0987/UserJS/issues
-// @version      1.0.0
+// @version      1.0.1
 // @description  Auto thanks to the OP when download the torrent
 // @icon         https://carry0987.github.io/favicon.png
 // @match        http*://movie-erog.com/*
@@ -13,7 +13,10 @@
 (function() {
     'use strict';
     //Get value
-    var get_tag = getElem('.tag_wrapper a', 'all');
+    var get_tag = getElem('#searchmain .tag-word a', 'all');
+    if (get_tag.length < 1) {
+        get_tag = getElem('#container>main .keyword_link a', 'all');
+    }
     var check_tag
     for (var i = 0; i < get_tag.length; i++) {
         check_tag = get_tag[i].href;
