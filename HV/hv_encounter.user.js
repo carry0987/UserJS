@@ -3,7 +3,7 @@
 // @author       carry0987
 // @namespace    https://github.com/carry0987
 // @support      https://github.com/carry0987/UserJS/issues
-// @version      1.5.8
+// @version      1.5.9
 // @description  Auto report when encounter monster
 // @icon         https://carry0987.github.io/favicon.png
 // @match        https://hentaiverse.org/?s=Character&ss=ch
@@ -25,7 +25,12 @@ const DEBUG = false;
 const six_hr = 2.16e+7;
 const twelve_hr = 4.32e+7;
 const recheck_times = 60000;
-const alt_hv = false;
+//Detect URL
+var alt_hv = false;
+var getLocation = document.location.href;
+if (getLocation.match('://alt.')) {
+    alt_hv = true;
+}
 
 class Cookie {
     constructor(cookie = document.cookie) {

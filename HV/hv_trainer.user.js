@@ -3,11 +3,14 @@
 // @author       carry0987
 // @namespace    https://github.com/carry0987
 // @support      https://github.com/carry0987/UserJS/issues
-// @version      1.6.1
+// @version      1.6.2
 // @description  Start training automatically and display process on top bar
 // @icon         https://carry0987.github.io/favicon.png
 // @include      http*://hentaiverse.org/*
 // @include      http*://alt.hentaiverse.org/*
+// @grant        GM_deleteValue
+// @grant        GM_setValue
+// @grant        GM_getValue
 // @run-at       document-end
 // ==/UserScript==
 
@@ -286,12 +289,46 @@
     }
 })()
 
+//Set value
 function setValue(item, value) {
-    window.localStorage[item] = (typeof value === 'string') ? value : JSON.stringify(value);
+    if (typeof GM_setValue === 'undefined') {
+        window.localStorage[item] = (typeof value === 'string') ? value : JSON.stringify(value);
+    } else {
+        GM_setValue(item, value);
+    }
 }
 
+//Get value
 function getValue(item, toJSON) {
-    return (window.localStorage[item]) ? ((toJSON) ? JSON.parse(window.localStorage[item]) : window.localStorage[item]) : null;
+    if (typeof GM_getValue === 'undefined' || !GM_getValue(item, null)) {
+        return (item in window.localStorage) ? ((toJSON) ? JSON.parse(window.localStorage[item]) : window.localStorage[item]) : null;
+    } else {
+        return GM_getValue(item, null);
+    }
+}
+
+//Delete value
+function deleteValue(item) {
+    if (typeof item === 'string') {
+        if (typeof GM_deleteValue === 'undefined') {
+            window.localStorage.removeItem(item);
+        } else {
+            GM_deleteValue(item);
+        }
+    } else if (typeof item === 'number') {
+        if (item === 0) {
+            delValue('disabled');
+        } else if (item === 1) {
+            delValue('roundNow');
+            delValue('roundAll');
+            delValue('monsterStatus');
+        } else if (item === 2) {
+            delValue('roundType');
+            delValue('battleCode');
+            delValue(0);
+            delValue(1);
+        }
+    }
 }
 
 //Get element
