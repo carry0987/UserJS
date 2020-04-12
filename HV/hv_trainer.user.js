@@ -3,7 +3,7 @@
 // @author       carry0987
 // @namespace    https://github.com/carry0987
 // @support      https://github.com/carry0987/UserJS/issues
-// @version      1.6.2
+// @version      1.6.3
 // @description  Start training automatically and display process on top bar
 // @icon         https://carry0987.github.io/favicon.png
 // @include      http*://hentaiverse.org/*
@@ -317,16 +317,16 @@ function deleteValue(item) {
         }
     } else if (typeof item === 'number') {
         if (item === 0) {
-            delValue('disabled');
+            deleteValue('disabled');
         } else if (item === 1) {
-            delValue('roundNow');
-            delValue('roundAll');
-            delValue('monsterStatus');
+            deleteValue('roundNow');
+            deleteValue('roundAll');
+            deleteValue('monsterStatus');
         } else if (item === 2) {
-            delValue('roundType');
-            delValue('battleCode');
-            delValue(0);
-            delValue(1);
+            deleteValue('roundType');
+            deleteValue('battleCode');
+            deleteValue(0);
+            deleteValue(1);
         }
     }
 }
