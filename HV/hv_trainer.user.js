@@ -3,7 +3,7 @@
 // @author       carry0987
 // @namespace    https://github.com/carry0987
 // @support      https://github.com/carry0987/UserJS/issues
-// @version      1.6.3
+// @version      1.6.4
 // @description  Start training automatically and display process on top bar
 // @icon         https://carry0987.github.io/favicon.png
 // @include      http*://hentaiverse.org/*
@@ -239,7 +239,7 @@
             var timeEnd = new Date(new Date().getTime() + timeLast * 1000)
             if (getValue('trainTask') && getValue('trainTask') !== '[]') {
                 trainTask = getValue('trainTask', true)
-                if (trainTask[0].freq <= 0) trainTask.splice(0, 1)
+                if (trainTask[0] && trainTask[0].freq <= 0) trainTask.splice(0, 1)
                 if (trainTask.length > 0) {
                     TrainID = trainTask[0].id
                 }
@@ -251,7 +251,7 @@
         } else {
             if (getValue('trainTask') && getValue('trainTask') !== '[]') {
                 trainTask = getValue('trainTask', true)
-                if (trainTask[0].freq <= 0) trainTask.splice(0, 1)
+                if (trainTask[0] && trainTask[0].freq <= 0) trainTask.splice(0, 1)
                 if (trainTask.length > 0) {
                     trainTask[0].freq--
                     startTraining(trainTask[0].id)
@@ -413,4 +413,10 @@ function addStyle() {
         '#hv_trainer_box>div{margin:15px;text-align:center;}#hv_trainer_box>div>table{border:2px solid #000;border-collapse:collapse;margin:0 auto;margin-bottom: 0.25em;}#hv_trainer_box>div>table>tbody>tr>td{border:1px solid #000;}#hv_trainer_box>div input{text-align:right;width:60px;}'
     ].join('')
     globalStyle.textContent = cssContent
+}
+
+//Report info in console
+function reportInfo(vars, showType = false) {
+    if (showType === true) console.log(typeof vars);
+    console.log(vars);
 }
