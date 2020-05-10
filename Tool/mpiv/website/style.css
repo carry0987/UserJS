@@ -1,0 +1,31 @@
+body { background:#eeeeee; color:black; line-height:1.4em; padding:1em 4em 2em 4em; font-family:sans-serif; }
+nav { text-align:center; }
+nav ul { margin:0; padding:0; }
+nav li { background:#c3e2fb; list-style:none; display:inline-block; }
+nav a { text-decoration:none; color:black; display:inline-block; padding:8px 12px; }
+nav li:first-of-type { background:#3f9ce0; font-weight:bold; border-radius:8px; }
+nav li:first-of-type a { color:white; }
+nav li.selected { font-weight:bold; }
+@media only screen and (max-width:900px) {
+		body { padding:1em; }
+}
+@media only screen and (max-width:800px) {
+	nav li { display:list-item; }
+	nav li:first-of-type { border-radius:8px 8px 0 0; }
+	nav a { padding:2px 6px; }
+}
+main { max-width:1200px; margin:0 auto; }
+h2 { background:#cccccc; padding:0.2em; font-size:1em; margin:3em 0 1em 0; padding-left:0.4em; }
+code { font-family:monospace; }
+table { border-collapse:collapse; margin-bottom:3em; }
+td, th { padding:4px 8px; background:white; border:1px solid #aaaaaa; text-align:left; line-height:1.2em; vertical-align:middle; }
+th { background:#cccccc; }
+p, table { margin-left:1em; }
+a { white-space:nowrap; }
+a[rel="external"] { background:url(external.png) no-repeat 0 center; padding-left:16px; }
+a[href*="firefox"] { background:url(firefox.png) no-repeat 0 center; padding-left:18px; }
+a[href*="chrome"] { background:url(chrome.png) no-repeat 0 center; padding-left:18px; }
+a[href*="opera"] { background:url(opera.png) no-repeat 0 center; padding-left:18px; }
+#install { border:1px solid #222; margin-left:1em; background:url(greasyfork.png) no-repeat #670000 10px center / 48px; height:56px; color:white; border-radius:16px; padding:4px 10px 4px 66px; font-weight:bold; line-height:56px; display:inline-block; }
+.css { display:inline-block; font-family:monospace; font-size:1em; margin:0 4em; background:#dddddd; border:1px dotted black; padding:3px; }
+

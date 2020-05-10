@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>MPIV Host Rules How-To</title>
+		<link rel="stylesheet" href="style.css">
+		<link rel="icon" href="favicon.ico" type="image/x-icon">
+		<style>
+			p + dl { margin-top:-1em; }
+			div, dl { margin-left:3em; }
+			div code { background:#dddddd; border:1px dotted black; padding:3px; }
+			code, dt, input { font-family:monospace; font-size:1em; display:inline-block; line-height:normal; }
+			code span { font-weight:bold; color:#cc0000; }
+			table code { font-size: 0.8em; vertical-align:middle; white-space:normal; word-wrap:break-word; }
+			table { border-collapse: collapse; }
+			td, th { padding: 4px 8px; background:white; border:1px solid #aaaaaa; text-align:left; line-height:1em; vertical-align:middle; }
+			th { background:#cccccc; }
+			#tips + ul li { padding-top: 8px; }
+			input, select { border:1px solid gray; padding:2px; }
+			input:focus, select:focus { border:1px solid black; }
+			#r { width:90%; }
+			#s { width:95%; }
+			#q { width:300px; }
+			#s-enabled:not(:checked) + * { display:none; }
+			#json-group { background:#dddddd; border:1px dotted black; padding:3px; margin:0 30px 0 30px; text-align:center; }
+			#json { word-wrap:break-word; white-space:normal; }
+		</style>
+		<script>
+			function $(id) { return document.getElementById(id); }
+			function onLoaded() {
+				[].forEach.call(document.body.querySelectorAll('#json-group, tr'), function(node) {
+					node.addEventListener('mouseover', onMouseOver, false)
+				});
+				[].forEach.call(document.body.querySelectorAll('input, select'), function(node) {
+					node.addEventListener('keyup', update, false);
+					node.addEventListener('change', update, false);
+				});
+			}
+			function onMouseOver() {
+				var r = document.createRange(), s = window.getSelection();
+				r.selectNode(this.querySelector('code'));
+				s.removeAllRanges();
+				s.addRange(r);
+			}
+			function update(e) {
+				if($('html').value == 'true') {
+					$('s-enabled').checked = true;
+					$('s-enabled').disabled = true;
+				} else {
+					$('s-enabled').disabled = false;
+				}
+				$('q-group').style.display = $('s-enabled').checked && $('s-dest').value == 'image' ? 'none' : '';
+				try {
+					var host = {r:(new RegExp($('r').value)).source};
+					if($('s-enabled').checked) host.s = $('s').value;
+					if($('q').value && !($('s-enabled').checked && $('s-dest').value == 'image')) {
+						host.q = $('q').value;
+						if(host.q.indexOf('return ') == -1) {
+							document.querySelector(host.q);
+						} else {
+							new Function('text', host.q);
+						}
+					}
+					if($('html').value == 'true') host.html = true;
+					if($('xhr').value == 'true') host.xhr = true;
+					$('json').textContent = JSON.stringify(host);
+				} catch(ex) {
+					$('json').textContent = ex.message;
+				}
+
+			}
+			document.addEventListener('DOMContentLoaded', onLoaded, false);
+		</script>
+	</head>
+	<body>
+		<header>
+			<nav>
+				<ul>
+					<li><a href="./">Mouseover Popup Image Viewer</a></li>
+					<li><a href="css.html">Custom CSS</a></li>
+					<li class="selected"><a href="host_rules.html">Custom Host Rules</a></li>
+					<li><a href="changelog.html">Changelog</a></li>
+				</ul>
+			</nav>
+		</header>
+		<main>
+			<h2 id="basics">Basics</h2>
+			<p>
+				A host rule is MPIV's compact description of how to grab images from a site. You can make MPIV work with more sites by adding your own host rules.
+			</p>
+			<p>Host rules are installed by pasting them into MPIV's settings dialog which is accessible from your script manager's toolbar icon menu, e.g. "User Script Commands" → "Set up Mouseover Popup Image Viewer" (Greasemonkey).
+			</p>
+			<p>
+				<a href="more_host_rules.html">MPIV's host rule repository</a> contains rules shared by other users. These rules can be accessed directly via settings dialog. In addition, rules you see in GreasyFork's forum can be installed by clicking them.
+			</p>
+			<p>
+				Read on if you're familiar with <a rel="external" href="http://en.wikipedia.org/wiki/HTML">HTML</a>, <a rel="external" href="http://www.w3schools.com/cssref/css_selectors.asp">CSS selectors</a> and <a rel="external" href="http://msdn.microsoft.com/en-us/library/az24scfc.aspx">regular expressions</a>.
+			</p>
+			<p>
+				In the simplest case, a host rule consists of a URL pattern and a CSS selector:
+			</p>
+			<ul>
+			<li>The URL pattern is a regular expression which is used to identify links that point to a page where an image is expected. For example, links to pages on ImageBam begin with <code>http://www.imagebam.com/image/</code>. A possible expression for this would be <code>imagebam\.com/image/</code> - protocol and subdomain are rarely needed and leaving them out makes things easier to read.
+			</li>
+			<li>
+				The CSS selector is used to find the element that holds the image on the page behind the link. If found, MPIV will look for <code>src</code>, <code>href</code> and <code>content</code> attributes. If none of them exists, MPIV will scan the element's HTML source and pick the first absolute URL.
+			</li>
+			</ul>
+			<p>
+				Host rules are written in <a rel="external" href="http://en.wikipedia.org/wiki/JSON">JSON format</a>. The regular expression goes in property <code>"r"</code>, the CSS selector goes in property <code>"q"</code> (query). Don't forget to <a rel="external" href="http://en.wikipedia.org/wiki/Escape_character">escape special characters</a>, e.g. <code>\</code> becomes <code>\\</code> and <code>"</code> becomes <code>\"</code> when written as JSON string.
+			</p>
+			<div>
+				Example: <code>{"r":"imagebam\\.com/image/", "q":"img[id]"}</code>
+			</div>
+			<p id="c">
+				You can show text as caption using property <code>"c"</code> which works similarly to property <code>"q"</code>, i.e. you specify a CSS selector and MPIV will pick the appropriate HTML attribute of the first matching element. The element's textual content will be used in case no fitting attributes exist. Property <code>"c"</code> reads from the same document as property <code>"q"</code>. If  <code>"q"</code> doesn't exist, the selector will be applied on the local (currently active) browser tab.
+			</p>
+			<div>
+				Example: <code>{"r":"pinterest\\.com/pin/", "q":".pinImage", <span>"c":"meta[property='og:description']"</span>}</code>
+			</div>
+			<p>
+				MPIV shows HTML tooltips as caption by defaut. This means if property <code>"c"</code> is not used, MPIV will display the text from the <a rel="external" href="https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/title">title attribute</a> of the element under the mouse cursor. Setting <code>"c"</code> to <code>""</code> (empty string) turns this off. In order to disable HTML tooltips for more than just a single host rule, check out <a href="css.html">Custom CSS</a>.
+			</p>
+			<h2 id="special">Special Cases</h2>
+			<p>
+				If the actual image URL can be derived from the link/thumbnail alone, you can speed up the whole loading process by specifying a URL substitution pattern so the HTML fetching and parsing step is being avoided. The pattern can be a URL or a vim/sed-inspired <code>/regexp/replacement/flags</code> string. Use <code>$1</code>, <code>$2</code> and so forth to reference RegExp groups you defined in property <code>"r"</code>.
+			</p>
+			<div>
+				Example 1: <code>{"r":"hotimg\\.com/image/<span>(</span>[a-z0-9]+<span>)</span>", <span>"s":"http://www.hotimg.com/direct/$1"</span>}</code>
+			</div>
+			<p>
+			</p>
+			<div>
+				Example 2: <code>{"r":"hotimg\\.com/image", <span>"s":"/image/direct/"</span>}</code>
+			</div>
+			<p id="s-array">
+				It's also possible to provide a list (in square brackets) of substitution patterns. If the first replacement doesn't load successfully, MPIV will silently try the second one and so forth.
+			</p>
+			<div>
+				Example: <code>{"r":"example\\.com/pics", <span>"s":["/small/large/", "/small/medium/"]</span>}</code>
+			</div>
+			<p>
+				Properties <code>"s"</code> and <code>"q"</code> can be used together if <code>"s"</code> is a single pattern. In this case, your constructed URL will be the input for <code>"q"</code> - not the element's original one. Use this fact to clean up URLs before MPIV starts requesting them.
+			</p>
+			<p>
+				By default, the regular expression is applied on <code>href</code> and <code>src</code> attributes of links and images. MPIV looks at thumbnail locations first and surrounding links second. Insert <code>"html":true</code> to search inside their HTML source instead. This way your regular expression is able to access URL segments in e.g. data attributes and inline styles. However, processing large chunks of HTML is bad for performance. You should therefore avoid using <code>"html":true</code> without additional constrains (explained further below).
+			</p>
+			<p>
+				If <code>"html":true</code> is present, you must provide a substitution pattern.
+			</p>
+			<p>
+				Some sites (usually the ones with money-making schemes and obnoxious ads) force users to view their images directly on their site by prohibiting <a rel="external" href="http://en.wikipedia.org/wiki/Inline_linking">hotlinking</a>. Insert the property <code>"xhr":true</code> into the host rule and images will be downloaded in an alternative way which should circumvent such protections.
+			</p>
+			<div>
+				Example: <code>{"r":"stooorage\\.com/show/", "q":"#page_body div div img", <span>"xhr":true</span>}</code>
+			</div>
+			<p id="e">
+				If you want MPIV to process elements other than <code>&lt;a&gt;</code> and <code>&lt;img&gt;</code> because a site uses let's say <code>&lt;li&gt;</code> elements with CSS backgrounds as thumbnails, you need to specify a selector for them in property <code>"e"</code>. Keep in mind that even now regular expressions will only be applied on <code>href</code> and <code>src</code> attributes. That means if the matching element lacks <code>href</code> and <code>src</code> attributes, you need to set <code>"html":true</code> or <a href="#advanced">write your own parsing code</a>. Property <code>"e"</code> can also be used as an elegant alternative to <code>"r"</code>.
+			</p>
+			<div>
+				Example: <code>{<span>"e":"a.avatar"</span>, "s":"/small/large/"}</code>
+			</div>
+			<p>In order to avoid needless evaluation of rules that make only sense on a single website, write the site's domain (or a part of it) in property <code>"d"</code>.</p>
+			<div>
+				Example: <code>{<span>"d":"example-shop"</span>, "r":"data-product-pic=\"(http+?)\"", "s":"$1", "html":true}</code>
+			</div>
+			<h2 id="advanced">Advanced Use</h2>
+			<p>
+			Rule properties <code>"s"</code>, <code>"q"</code> and <code>"c"</code> may contain JavaScript code which provides a maximum of flexibility.
+			</p>
+			<p>While <code>"s"</code> and <code>"q"</code> can either return a single URL or an array of URLs, <code>"c"</code> is expected to return a descriptive text string.
+			</p>
+			<div>
+				Example 1: <code>{"r":"example\\.com/foo", "s":"<span>if(node.className == 'ad') return ''; else return m.input.toLowerCase();</span>"}</code>
+			</div>
+			<p>
+			</p>
+			<div>
+				Example 2: <code>{"e":"a.pic", "s":"<span>return ['png', 'gif', 'jpg'].map(function(ext) { return node.dataset.base + ext; });</span>"}</code>
+			</div>
+			<p>
+				If <code>"s"</code> returns <code>false</code>, MPIV will proceed to the next rule. If <code>"s"</code> returns <code>''</code> (empty string), no further rule will be evaluated.
+			</p>
+			<p>
+				<strong>Available variables in "s":</strong>
+			</p>
+			<dl>
+				<dt>m</dt><dd><a rel="external" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/exec">RegExp result array</a></dd>
+				<dt>node</dt><dd><a rel="external" href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement">HTML element</a> that triggered popup</dd>
+			</dl>
+			<p>
+				<strong>Available variables in "q" and "c":</strong>
+			</p>
+			<dl>
+				<dt>doc</dt><dd><a rel="external" href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLDocument">DOM tree</a> of remote page (when <code>"q"</code> exists and HTTP response could be parsed)</dd>
+				<dt>text</dt><dd>raw HTTP response / source code of HTML page</dd>
+				<dt>node</dt><dd><a rel="external" href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement">HTML element</a> that triggered popup (in local DOM tree)</dd>
+			</dl>
+			<p id="follow">
+				Property <code>"follow":true</code> causes MPIV to completely restart rule evaluation with the URL returned by <code>"q"</code> or <code>"s"</code> as input. This comes in handy when you deal with sites that don't host images themselves. If neither <code>"q"</code> nor <code>"s"</code> exists, MPIV will follow all HTTP redirections (Location header) and restart evaluation with the last URL requested. Rules with <code>"html":true</code> will be skipped during re-evaluation if the new input URL was taken from a different page.
+			</p>
+			<div>
+				Example 1: <code>{"r":"example\\.com/view", "q":"a[href*="imagebam"]", <span>"follow":true</span>}</code>
+			</div>
+			<p>
+			</p>
+			<div>
+				Example 2: <code>{"r":"example\\.com/redirect\\.php\\?decrypt=", <span>"follow":true</span>}</code>
+			</div>
+			<p>
+				A few sites clip their thumbnails by putting them in containers smaller than the thumbnails themselves. As a result, MPIV's popup stays open longer than you would expect because your mouse cursor hasn't left the invisible part of the thumbnail yet. If you encounter a situation like this, write a CSS selector in property <code>"rect"</code> to guide MPIV to an ancestor node whose bounding rectangle makes more sense to you.
+			</p>
+			<p>
+				Insert property <code>"manual":true</code> to disable automatic popup activation on a case-by-case basis.
+			</p>
+			<p id="css">
+				Use property <code>"css"</code> to apply CSS styling to the page in case the rule gets chosen.
+			</p>
+			<div>
+				Example: <code>{"e":"a.user-profile", "q":"#user-pic", <span>"css":"#user-hovercard { display:none; }"</span>}</code>
+			</div>
+			<p>
+				MPIV has basic support for HTML5 video. Host rules may point to <a rel="external" href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/source">source elements</a> and return URLs ending in webm/mp4.
+			</p>
+			<h2 id="helper">Rule-O-Matic&#8482;</h2>
+			<p>
+				Apply this regular expression<br>
+				<strong>/</strong> <input id="r" type="text" placeholder="example\.com/show/(.+)"> <strong>/i</strong><br>
+				on <select id="html"><option value="false">href and src attributes</option><option value="true">the HTML source</option></select> of links and thumbnails.
+			</p>
+			<p>
+				<input id="s-enabled" type="checkbox"> Rewrite URL
+				<span>
+					to <input id="s" type="text" placeholder="http://example.com/$1.jpg"><br>
+					which points to <select id="s-dest"><option value="image">the actual image</option><option value="page">a web page</option></select>
+				</span>
+			</p>
+			<p id="q-group">
+				Grab actual image from remote page using this CSS selector: <input id="q" type="text" placeholder="#thepic">
+			</p>
+			<p class="group">
+				The remote site <select id="xhr"><option value="false">allows</option><option value="true">forbids</option></select> hotlinking.
+			</p>
+			<p id="json-group">
+				<code id="json">Host rule will appear here.</code>
+			</p>
+			<h2 id="tips">Tips &amp; Gotchas</h2>
+			<ul>
+				<li>Right click &rarr; "Inspect Element" is the easiest way to analyze the structure of a web page.</li>
+				<li>Check JavaScript console and network monitor for errors. HTTP response code 403 often indicates that the server forbids hotlinking.</li>
+				<li>You can use the fact that user-defined rules have preference over built-in ones to prevent unwanted popups over certain links by specifying an empty substitution URL, e.g. <code>{"r":"imgur\\.com", "s":""}</code> and <code>{"d":"delicious.com", "e":"div.meta *", "s":""}</code>. To disable MPIV completely on a certain site, use your script manager's exclude list.</li>
+				<li>The page MPIV sees might be different from the one you see because MPIV doesn't run JavaScript on downloaded pages. Reload page with JavaScript disabled to see what's going on.</li>
+				<li>Host rules containing JavaScript will not work on sites that use <a rel="external" href="http://en.wikipedia.org/wiki/Content_Security_Policy">Content Security Policy</a>. Same goes for images from domains that aren't whitelisted. Solutions:
+					<ul>
+						<li>If browser refuses to load image, try inserting <code>"xhr":"data"</code>. Maybe you're lucky and the "data:" protocol is whitelisted.</li>
+						<li>Use an extension or local HTTP proxy to strip/rewrite CSP header from responses.</li>
+						<li>Disable CSP all together. (Firefox: security.csp.enable = false in about:config)</li>
+					</ul>
+				</li>
+				<li>When you share your rules in forums, please enclose them in code tags so quotation marks don't get mangled.</li>
+			</ul>
+		</main>
+	</body>
+</html>

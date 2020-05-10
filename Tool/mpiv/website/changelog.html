@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>MPIV Changelog</title>
+		<link rel="stylesheet" href="style.css">
+		<link rel="icon" href="favicon.ico" type="image/x-icon">
+	</head>
+	<body>
+		<header>
+			<nav>
+				<ul>
+					<li><a href="./">Mouseover Popup Image Viewer</a></li>
+					<li><a href="css.html">Custom CSS</a></li>
+					<li><a href="host_rules.html">Custom Host Rules</a></li>
+					<li class="selected"><a href="changelog.html">Changelog</a></li>
+				</ul>
+			</nav>
+		</header>
+		<main>
+			<h2>Recent Updates</h2>
+			<table>
+				<tr><td>2017-09-29</td><td><b>Hosts:</b> updated gfycat and postimg, added imgcredit, <b>Core:</b> lessened impact of CSS issues in Firefox 57 with Servo enabled, <b>Settings:</b> removed option to disable cursor auto-hiding (can be replicated using <a href="css.html#examples">custom CSS</a>)</td></tr>
+				<tr><td>2017-04-24</td><td><b>Hosts:</b> fixed instagram (thanks macserv)</td></tr>
+				<tr><td>2017-04-06</td><td><b>Hosts:</b> updated twitter, fixed dropbox</td></tr>
+				<tr><td>2017-01-19</td><td><b>Hosts:</b> updated instagram, fixed pimpandhost and pixhost</td></tr>
+				<tr><td>2016-12-13</td><td><b>Hosts:</b> updated instagram and twitter (thanks darkred), fixed pimpandhost, <b>Core:</b> fixed compilation error in Opera 12</td></tr>
+				<tr><td>2016-11-06</td><td><b>Hosts:</b> fixed facebook and postimg, added coreimg, chronos, imgflash and imgsen, updated depic, img.yt and twitter, removed imgrill - Thanks to darkred who had a hand in pretty much everything.</td></tr>
+				<tr><td>2016-09-17</td><td><b>Hosts:</b> updated imdb</td></tr>
+				<tr><td>2016-06-19</td><td><b>Hosts:</b> updated imgur, added imgflip and makeameme</td></tr>
+				<tr><td>2016-05-25</td><td><b>Hosts:</b> added reddituploads</td></tr>
+				<tr><td>2016-04-17</td><td><b>Hosts:</b> fixed instagram (captions, videos in timeline), updated postimg</td></tr>
+				<tr><td>2016-03-20</td><td><b>Hosts:</b> updated imgur albums</td></tr>
+				<tr><td>2016-02-02</td><td><b>Hosts:</b> updated amazon</td></tr>
+				<tr><td>2016-01-30</td><td><b>Hosts:</b> fixed instagram (timeline)</td></tr>
+				<tr><td>2016-01-23</td><td><b>Core:</b> fixed handling of protocol-relative URLs</td></tr>
+				<tr><td>2016-01-18</td><td><b>Hosts:</b> added foxyimg, imgmaid and imgdragon, updated instagram (captions), <b>Core:</b> specified XHR permissions for Tampermonkey</td></tr>
+				<tr><td>2016-01-10</td><td><b>Hosts:</b> added pic-maniac, updated tweetdeck, removed last.fm (nobody has complained about it not working), <b>Core:</b> enforce popup placement more strongly (thanks blargg)</td></tr>
+				<tr><td>2015-12-11</td><td><b>Hosts:</b> updated facebook (photo links)</td></tr>
+				<tr><td>2015-12-09</td><td><b>Core:</b> restored @include because Tampermonkey and Maxthon's Violentmonkey react to it missing annoyingly</td></tr>
+				<tr><td>2015-12-06</td><td><b>Hosts:</b> updated instagram (timeline), twitter (photo links) and 4chan (catalog)</td></tr>
+				<tr><td>2015-11-09</td><td><b>Core:</b> update filename generation in download feature</td></tr>
+				<tr><td>2015-10-11</td><td><b>Controls:</b> Downloading files with "d" key is now also possible with Firefox. Please note: This feature is in an experimental state and
+not recommended for large files. "Save as" will not appear until the whole file has been loaded into memory. So don't hit the "d" key repeatedly. Press it once and wait.</td></tr>
+				<tr><td>2015-10-10</td><td><b>Hosts:</b> fixed 500px and listal, <b>Controls:</b> press "d" to download file (Tampermonkey-only because other userscript managers lack <a rel="external" href="https://tampermonkey.net/documentation.php#GM_download">GM_download</a>)</td></tr>
+				<tr><td>2015-10-06</td><td><b>Hosts:</b> updated imgur and wikia, <b>Core:</b> small fixes</td></tr>
+				<tr><td>2015-09-25</td><td><b>Hosts:</b> fixed imgur albums, or not, who really knows at this point?</td></tr>
+				<tr><td>2015-09-24</td><td><b>Hosts:</b> fixed imgur albums, updated instagram</td></tr>
+				<tr><td>2015-09-14</td><td><b>Hosts:</b> fixed imgur albums</td></tr>
+				<tr><td>2015-09-03</td><td><b>Hosts:</b> updated instagram and lostpic</td></tr>
+				<tr><td>2015-08-27</td><td><b>Hosts:</b> fixed imgur links on facebook, <b>Core:</b> reduced number of false-positives in image tab detection</td></tr>
+				<tr><td>2015-08-07</td><td><b>Interface:</b> show video controls while shift is being pressed (shift will not be interpreted as "activate zoom" or "close popup" if combined with a left-click)</td></tr>
+				<tr><td>2015-08-04</td><td><b>Hosts:</b> update imagefap, <b>Settings:</b> blank input fields are no longer affected by search</td></tr>
+				<tr><td>2015-08-02</td><td><b>Hosts:</b> updated CSP workaround for twitter</td></tr>
+				<tr><td>2015-07-13</td><td><b>Hosts:</b> fixed wikia</td></tr>
+				<tr><td>2015-06-30</td><td><b>Core:</b> fixed config problem under Greasemonkey 3.2</td></tr>
+				<tr><td>2015-05-06</td><td><b>Hosts:</b> fixed flickr for Chrome users</td></tr>
+				<tr><td>2015-05-04</td><td><b>Hosts:</b> updated flickr, added freeimgup</td></tr>
+				<tr><td>2015-04-26</td><td><b>Hosts:</b> added imageboom, imgult and uplimg, <b>Core:</b> fixed host rule property "d" not working under Chrome (thanks wOxxOm)</td></tr>
+				<tr><td>2015-04-10</td><td><b>Hosts:</b> fixed fastpic</td></tr>
+				<tr><td>2015-03-30</td><td><b>Hosts:</b> replace .gif with .webm in imgur albums, added image.re, gallerynova and gallerysense, <b>Core:</b> don't parse URLs in links that are longer than 750 characters, property "entry" in gallery rules is now optional</td></tr>
+				<tr><td>2015-03-21</td><td><b>Hosts:</b> updated gfycat, googleusercontent, added hosturimage</td></tr>
+				<tr><td>2015-03-16</td><td><b>Hosts:</b> support imgur links with commas in them, removed mediacru.sh, added xxxscreens</td></tr>
+				<tr><td>2015-03-06</td><td><b>Hosts:</b> updated imgur, added imghit and picspornfree, <b>Core:</b> fixed <code>"xhr":"data" </code> in custom host rules</td></tr>
+				<tr><td>2015-02-15</td><td><b>Hosts:</b> added more "Click to view" cancer, updated imageshack, googleusercontent and twitter, <b>Core:</b> fixed HTML tooltips, fixed CSS class mpiv-edge overwriting mpiv-zoom, <b>Settings:</b> remember rule search term until reload, removed popup activation option "thumbnails-only" (Figuring out if a focused link constitues a thumbnail is computationally intensive because sites might use deeply nested elements with externally defined CSS backgrounds. It's more efficient to add a host rule like <code>{"d":"reddit", "e":"a.title, div.commentarea a", "s":""}</code> to stop the popup from showing up over certain links.)</td></tr>
+				<tr><td>2015-02-05</td><td><b>Hosts:</b> added imgdiamond and imgcandy, removed soundcloud, fixed startpage, updated amazon, imgur, instagram, <b>Core:</b> various minor things</td></tr>
+				<tr><td>2015-01-21</td><td><b>Hosts:</b> updated imgur (second attempt at GIFV support)</td></tr>
+				<tr><td>2015-01-19</td><td><b>Hosts:</b> added support for KickassTorrent's redirector and a slew of "Click to view" sites, updated wikia, <b>Core:</b> softened the effects of Firefox 36 breaking Greasemonkey's ability to cancel requests</td></tr>
+				<tr><td>2014-12-29</td><td><b>Hosts:</b> fixed imgur on stackexchange, extended support for wikia</td></tr>
+				<tr><td>2014-12-11</td><td><b>Core:</b> rule property <a href="host_rules.html#c">"c"</a> can now be used without property "q", made variable "node" available to code in "q" and "c"</td></tr>
+				<tr><td>2014-12-09</td><td><b>Core:</b> delay insertion of menu command because <a rel="external" href="https://greasyfork.org/en/forum/discussion/2421/">reasons</a></td></tr>
+				<tr><td>2014-11-22</td><td><b>Hosts:</b> updated imgur, <b>Core:</b> made it possible to use property <a href="host_rules.html#follow">"follow"</a> without "q" and "s"</td></tr>
+				<tr><td>2014-11-19</td><td><b>Hosts:</b> updated twitter (non-HTTPS instagram links didn't work because of CORS), updated facebook (profile and cover pic and in hovercards, limitation: profile pic must be clickable in header)</td></tr>
+				<tr><td>2014-11-15</td><td><b>Core:</b> fixed blank tab because of Chrome unloading images too quickly, <b>Settings:</b> added search field to filter own host rules (hidden until enough rules exist)</td></tr>
+				<tr><td>2014-11-14</td><td><b>Hosts:</b> fixed facebook (photo overview) and imagebam ("open image in new tab" triggered file open dialog in Firefox), <b>Settings:</b> made anti-hotlinking workaround optional (when disabled, rule property "xhr" will be ignored and you need to spoof the request headers yourself with an extension like Smart Referer which has the benefit of not having to deal with progress bars and blob: URLs anymore)</td></tr>
+				<tr><td>2014-11-13</td><td><b>Controls:</b> hold down ctrl while cursor enters image element to bypass configured threshold for scaled-down images</td></tr>
+				<tr><td>2014-10-30</td><td><b>Core:</b> allow code in rule property "q" to return URL array</td></tr>
+				<tr><td>2014-10-25</td><td><b>Core:</b> fixed bug under Chrome, tweaked popup CSS</td></tr>
+				<tr><td>2014-10-19</td><td><b>Hosts:</b> updated imgur (<s>GIFV support</s> <i>reverted because imgur sometimes redirects to HTML page</i>), <b>Custom Scale Factors:</b> append <code>*</code> to set default factor (e.g. <code>0.5 1* 1.5 2</code>), inserting <code>0</code> (fit small images to window) does not replace factors between 1 and calculated value anymore, use <code>0!</code> for old behavior (i.e. zoom skips factors smaller than calculated value)</td></tr>
+				<tr><td>2014-10-08</td><td><b>New option "Preloading":</b> When enabled, loading will start immediately on mouse hover regardless of specified popup delay. (Thanks to wOxxOm), <b>Usability:</b> Host rules posted by users on userscripts.org/GreasyFork can now be installed directly from the settings dialog. This feature replaces the list of examples in the documentation.</td></tr>
+				<tr><td>2014-10-05</td><td><b>Usability:</b> Host rules on this site and in GreasyFork's forum can now be installed by click if they are enclosed in &lt;code&gt;, &lt;pre&gt; or &lt;blockquote&gt; tags. <b>Core:</b> fixed empty property "s" not working with image elements, when changing zoom factor never skip scale of 100%</td></tr>
+				<tr><td>2014-10-02</td><td><b>Core:</b> URL array bug fix</td></tr>
+				<tr><td>2014-09-30</td><td><b>Core:</b> allow URL arrays in gallery items</td></tr>
+				<tr><td>2014-09-28</td><td><b>Core:</b> lazy fix for substitution arrays that return error images</td></tr>
+				<tr><td>2014-09-23</td><td><b>Core:</b> support for <a href="host_rules.html#s-array">multiple substitution URLs</a></td></tr>
+				<tr><td>2014-09-19</td><td><b>Core:</b> JavaScript code in rule propertes "q" and "c" now has access to remote DOM through variable "doc"</td></tr>
+				<tr><td>2014-09-08</td><td><b>Hosts:</b> updated flick and gfycatr</td></tr>
+				<tr><td>2014-09-01</td><td><b>Hosts:</b> updated imgur, read starting position from gallery URLs (filename substring or numeric index in fragment identifier)</td></tr>
+				<tr><td>2014-08-31</td><td><b>Hosts:</b> replace hardcoded "http://" with "https://" where possible</td></tr>
+				<tr><td>2014-08-06</td><td><b>Hosts:</b> updated facebook and twitter</td></tr>
+				<tr><td>2014-07-29</td><td><b>Hosts:</b> updated facebook and imgur</td></tr>
+				<tr><td>2014-07-27</td><td><b>Hosts:</b> updated facebook and websta</td></tr>
+				<tr><td>2014-07-26</td><td><b>Core:</b> fixed bug that affected rules which return false</td></tr>
+				<tr><td>2014-07-24</td><td><b>Hosts:</b> updated twitter and google, <b>Interface:</b> include file size and video duration in info bar during loading, don't show HTML tooltip if tooltip is substring of page title, swapped zoom factor and resolution in tab title, <b>Core:</b> made URL parsing less magical (URLs within URLs used to be decoded, split up and checked individually)</td></tr>
+				<tr><td>2014-07-05</td><td><b>Hosts:</b> added 4chan catalog, <b>Core:</b> two bug fixes, new host rule property <a href="host_rules.html#css">"css"</a></td></tr>
+				<tr><td>2014-07-02</td><td><b>Hosts:</b> added mediacru.sh, <b>Settings:</b> made zoom steps customizable and popup closing on zooming out optional, <b>Core:</b> new host rule property <a href="host_rules.html#c">"c"</a> (stands for "caption", extracts text from remote page and shows it in info bar), show progress of video buffering in case of playback delay, fixed unwanted popup over images with unknown dimensions</td></tr>
+				<tr><td>2014-06-18</td><td><b>Hosts:</b> added pixoverflow, imgwiki, pixliv and support for "GIFs" behind pic.twitter.com links</td></tr>
+				<tr><td>2014-06-13</td><td><b>Core:</b> fixed display of zoom factor for users of CSS transitions, made "run in image tabs" option more reliable</td></tr>
+				<tr><td>2014-06-07</td><td><b>Hosts:</b> updated imgur</td></tr>
+				<tr><td>2014-05-25</td><td><b>Core:</b> don't parse data URLs in links</td></tr>
+				<tr><td>2014-05-25</td><td><b>Hosts:</b> updated twitter and tweetdeck</td></tr>
+				<tr><td>2014-05-23</td><td><b>Hosts:</b> updated youtube and twitter, <b>Core:</b> avoid two kinds of unhelpful HTML tooltips, set volume of videos to 50%</td></tr>
+				<tr><td>2014-05-18</td><td><b>Settings:</b> exported configuration now reflects state of dialog</td></tr>
+				<tr><td>2014-05-15</td><td><b>Settings:</b> added option "run in image tabs"</td></tr>
+				<tr><td>2014-05-06</td><td><b>Hosts:</b> small update, <b>Core:</b> fixed bug under Chrome</td></tr>
+				<tr><td>2014-04-14</td><td><b>Hosts:</b> updated twitter (media grid), <b>Core:</b> new host rule properties "d" (domain substring) and "e" (restricts rule to elements that match a given selector, can be used instead of or in addition to "r"), added Greasemonkey's soon-to-be-mandatory @grant placebo</td></tr>
+				<tr><td></td><td>From 2011 to April 2014, MPIV was hosted on the now defunct userscripts.org. <a rel="external" href="http://userscripts-mirror.org/scripts/show/109262">Here's a mirror site.</a></td></tr>
+			</table>
+		</main>
+	</body>
+</html>

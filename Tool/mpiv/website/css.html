@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>MPIV Custom CSS How-To</title>
+		<link rel="stylesheet" href="style.css">
+		<link rel="icon" href="favicon.ico" type="image/x-icon">
+	</head>
+	<body>
+		<header>
+			<nav>
+				<ul>
+					<li><a href="./">Mouseover Popup Image Viewer</a></li>
+					<li class="selected"><a href="css.html">Custom CSS</a></li>
+					<li><a href="host_rules.html">Custom Host Rules</a></li>
+					<li><a href="changelog.html">Changelog</a></li>
+				</ul>
+			</nav>
+		</header>
+		<main>
+			<h2>General</h2>
+			<p>
+				Use the "Custom CSS" text field in the settings dialog to modify MPIV's appearance using <a rel="external" href="https://developer.mozilla.org/en-US/docs/Web/CSS/Reference">CSS</a>. You can also use it to temporarily hide interfering page content since what you write there will only be used when MPIV is active.
+			</p>
+			<p>The following table lists all IDs and classes available:</p>
+			<table>
+				<tr><th>Element</th><th>Selector</th></tr>
+				<tr><td>Popup (image or video element)</td><td>#mpiv-popup</td></tr>
+				<tr><td>Popup while being visible</td><td>#mpiv-popup.mpiv-show</td></tr>
+				<tr><td>Popup while zoom factor is being changed (until CSS transition ends)<td>#mpiv-popup.mpiv-zooming</td></tr>
+				<tr><td>Bar (div element)</td><td>#mpiv-bar</td></tr>
+				<tr><td>Bar while being visible</td><td>#mpiv-bar.mpiv-show</td></tr>
+				<tr><td>Bar while showing gallery info</td><td>#mpiv-bar.mpiv-gallery</td></tr>
+				<tr><td>Bar while showing error message</td><td>#mpiv-bar.mpiv-error</td></tr>
+				<tr><td>Bar while showing HTML tooltip</td><td>#mpiv-bar.mpiv-tooltip</td></tr>
+				<tr><td>Bar while showing caption (parsed by host rule property "c")</td><td>#mpiv-bar.mpiv-caption</td></tr>
+				<tr><td>Bar while showing progress (video buffer, anti-hotlinking)</td><td>#mpiv-bar.mpiv-xhr</td></tr>
+				<tr><td>Page while image is being loaded</td><td>html.mpiv-loading</td></tr>
+				<tr><td>Page while image is being displayed down-scaled</td><td>html.mpiv-large</td></tr>
+				<tr><td>Page while manual popup activation is possible</td><td>html.mpiv-ready</td></tr>
+			</table>
+			<h2 id="examples">Examples</h2>
+			<p>Borderless popup:</p>
+			<code class="css">#mpiv-popup { border:none; }</code>
+			<p>Red border with rounded corners if popup contains HTML5 video:</p>
+			<code class="css">#mpiv-popup[autoplay] { border:3px solid darkred; border-radius:10px; }</code>
+			<p>Fade-in animation:</p>
+			<code class="css">#mpiv-popup { display:inline; opacity:0; transition:opacity 500ms; }<br>#mpiv-popup.mpiv-show { opacity:1; }</code>
+			<p>Info box in bottom right corner, black on white, no delayed animation:</p>
+			<code class="css">#mpiv-bar { left:auto; top:auto; bottom:0; background:white; color:black; transition:none; }</code>
+			<p>No HTML tooltips on example.com and example.org (Firefox only):</p>
+			<code class="css">@-moz-document domain(example.com), domain(example.org) {<br>#mpiv-bar.mpiv-tooltip { display:none; }<br>}</code>
+			<p>Never hide mouse cursor:</p>
+			<code class="css">html:not(.mpiv-large) #mpiv-popup { cursor:default!important }</code>
+		</main>
+	</body>
+</html>

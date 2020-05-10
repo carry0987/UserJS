@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="description" content="MPIV is a userscript that shows images and videos behind links and thumbnails.">
+		<title>Mouseover Popup Image Viewer</title>
+		<link rel="stylesheet" href="style.css">
+		<link rel="icon" href="favicon.ico" type="image/x-icon">
+	</head>
+	<body>
+		<header>
+			<nav>
+				<ul>
+					<li><a href="./">Mouseover Popup Image Viewer</a></li>
+					<li><a href="css.html">Custom CSS</a></li>
+					<li><a href="host_rules.html">Custom Host Rules</a></li>
+					<li><a href="changelog.html">Changelog</a></li>
+				</ul>
+			</nav>
+		</header>
+		<main>
+			<h2>Introduction</h2>
+			<p>
+				Mouseover Popup Image Viewer (MPIV) is a userscript that shows images and videos behind links and thumbnails. Its features include:
+			</p>
+			<ul>
+				<li>general support for direct links to image files and WebM videos</li>
+				<li>special support for image hosting services like imgur, gfycat and imagevenue as well as websites like facebook, imdb, twitter and wikipedia</li>
+				<li>extensibility using user-defined <a href="host_rules.html">host rules</a></li>
+				<li>zooming and panning</li>
+				<li>minimal user interface, e.g. zoom level is shown in the tab title</li>
+				<li>gallery mode to flip through imgur and minus albums</li>
+				<li>workaround for anti-hotlinking protections</li>
+			</ul>
+			<h2>Installation</h2>
+			<p>
+			MPIV aims to be compatible with the latest release versions of <a href="https://addons.mozilla.org/en-Us/firefox/addon/greasemonkey">Firefox + Greasemonkey</a>, <a href="https://chrome.google.com/webstore/detail/dhdgffkkebhmkfjojejmpbldmpobfkfo">Chrome + Tampermonkey</a> and <a href="https://addons.opera.com/extensions/details/violent-monkey">Opera 12 + Violentmonkey</a>.
+			</p>
+			<a href="https://greasyfork.org/en/scripts/404-mouseover-popup-image-viewer"><div id="install">Install &amp; Discuss @ GreasyFork</div></a>
+			<h2>How to Use</h2>
+			<table>
+				<tr><th>Action</th><th>Trigger</th></tr>
+				<tr><td>open popup</td><td>move mouse cursor over thumbnail</td></tr>
+				<tr><td>close popup</td><td>move cursor off thumbnail, click, zoom out fully, ...</td></tr>
+				<tr><td>suppress/freeze popup</td><td>hold down shift while entering/leaving thumbnail</td></tr>
+				<tr><td>force popup (ignore size threshold)&nbsp;&nbsp;&nbsp;</td><td>hold down ctrl while entering image element</td></tr>
+				<tr><td>activate zoom</td><td>right-click or tap shift while popup is visible</td></tr>
+				<tr><td>adjust zoom</td><td>mouse wheel up/down to zoom in/out</td></tr>
+				<tr><td>flip through album (e.g. imgur)</td><td>mouse wheel, j/k or left/right keys</td></tr>
+				<tr><td>open file in new tab</td><td>press "t" while popup is visible</td></tr>
+				<tr><td>download file</td><td>press "d" while popup is visible (Firefox and Chrome)</td></tr>
+				<tr><td>change settings</td><td>monkey toolbar icon -> "User Script Commands" -> "Set up..."</td></tr>
+			</table>
+			<h2>Notes</h2>
+			<ul>
+				<li>Image dimensions and zoom level are shown in the tab title.</li>
+				<li>Some sites require an anti-hotlinking workaround. You might see a progress bar and odd filenames when it's being used.</li>
+				<li>If videos don't play, check your content-blocking extensions and browser settings.<br>Firefox users: Don't touch <code>media.autoplay.enabled</code> and be aware that Flashblock also blocks HTML5 videos by default.</li>
+				<li>The download feature is in an experimental state and not recommended for large files. "Save as" will not appear until the whole file has been loaded into memory. So don't hit the "d" key repeatedly. Press it once and wait.</li>
+				<li>If you want to disable this script on certain sites, add them to your script manager's exclude list.<br>Firefox users: Open "Add-ons" -> "User Scripts" -> "Options" and write something like <code>https://www.youtube.com/*</code>.</li>
+				<li>Icon taken from <a rel="external" href="http://www.iconfinder.com/iconsets/developerkit">Developer Kit</a> by Burak Ozturk.</li>
+			</ul>
+		</main>
+	</body>
+</html>

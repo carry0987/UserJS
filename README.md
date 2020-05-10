@@ -4,6 +4,7 @@ Just storge my user script for Tampermonkey
 ### Tool
 | Name | Raw | Version | Description |
 | --- | --- | --- | --- |
+| [Mouseover Popup Image Viewer](https://carry0987.github.io/UserJS/Tool/mpiv) | [Raw](https://github.com/carry0987/UserJS/raw/master/Tool/mvip/mvip.user.js) | 1.0.0 | Shows images and videos behind links and thumbnails |
 | [Rutracker Auto Thanks](Tool/rutracker_auto_thanks.user.js) | [Raw](https://github.com/carry0987/UserJS/raw/master/Tool/rutracker_auto_thanks.user.js) | 1.1.5 | Auto thanks to the OP when download the torrent |
 | [Google Photos Show File Title](Tool/google_photo_title.user.js) | [Raw](https://github.com/carry0987/UserJS/raw/master/Tool/google_photo_title.user.js) | 1.0.2 | Display the title of file into header |
 
@@ -26,12 +27,10 @@ Just storge my user script for Tampermonkey
 | Name | Raw | Version | Description |
 | --- | --- | --- | --- |
 | [HV Trainer](HV/hv_trainer.user.js) | [Raw](https://github.com/carry0987/UserJS/raw/master/HV/hv_trainer.user.js) | 1.6.2 | Start training automatically and display process on top bar |
-| [HV Encounter](HV/hv_encounter.user.js) | [Raw](https://github.com/carry0987/UserJS/raw/master/HV/hv_encounter.user.js) | 1.5.9 | Auto report when encounter monster |
 | [HV Challenge](HV/hv_challenge.user.js) | [Raw](https://github.com/carry0987/UserJS/raw/master/HV/hv_challenge.user.js) | 1.1.0 | Easily change the challenge level |
 | [HV How Rich Am I ?](HV/hv_how_rich_am_i.user.js) | [Raw](https://github.com/carry0987/UserJS/raw/master/HV/hv_how_rich_am_i.user.js) | 1.4.7 | Show how many Credits you have |
 | [HV Equipment Repairer](HV/hv_equip_repairer.user.js) | [Raw](https://github.com/carry0987/UserJS/raw/master/HV/hv_equip_repairer.user.js) | 1.2.0 | Repair equipments automatically |
 | [HV Equipment Highlight](HV/hv_equip_highlight.user.js) | [Raw](https://github.com/carry0987/UserJS/raw/master/HV/hv_equip_highlight.user.js) | 1.3.0 | People always discern the color first, then to see word |
-| [HV Auto Refresh](HV/hv_auto_refresh.user.js) | [Raw](https://github.com/carry0987/UserJS/raw/master/HV/hv_auto_refresh.user.js) | 1.0.6 | Auto refresh when battle finished |
 | [HV Item Chinese TR](HV/hv_chinese_translation.user.js) | [Raw](https://github.com/carry0987/UserJS/raw/master/HV/hv_chinese_translation.user.js) | 1.1.2 | Translate HV items into traditional chinese |
 
 ### Test
