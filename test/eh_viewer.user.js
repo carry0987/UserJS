@@ -1,43 +1,38 @@
 // ==UserScript==
-// @name         EH & ExH Viewer
-// @author       carry0987
-// @namespace    https://github.com/carry0987
-// @version      1.0.0
-// @description  Manage your favorite tags, enhance searching, improve comic page
-// @icon         https://carry0987.github.io/favicon.png
-// @match        https://exhentai.org/*
-// @match        https://e-hentai.org/*
-// @grant        GM_setValue
-// @grant        GM_getValue
+// @name ExHentai Viewer
+// @namespace Violentmonkey Scripts
+// @description manage your favorite tags, enhance searching, improve comic page
+// @match *://exhentai.org/*
+// @match *://e-hentai.org/*
+// @grant       GM_setValue
+// @grant       GM_getValue
+// @version 0.41
 // ==/UserScript==
-
-/* ====================================== *\
 // version info:
-// 0.40:
-//     1. improve btn style
-//     2. tag value were saved as list instead of string
-//     3. add support for add / search / delete a set of tags by one name
-//     4. add zoomIn / zoomOut btn to MPV
-// 0.41:
-//     1. add center align for mpv mode
-\* ====================================== */
+// 0.40: 
+//     1. improve btn style;
+//     2. tag value were saved as list instead of string;
+//     3. add support for add / search / delete a set of tags by one name.
+//     4. add zoomIn / zoomOut btn to MPV.
+//0.41:
+//     1. add center align for mpv mode.
 
 var custom_filter = GM_getValue('custom_filter', -1);
 initScript();
-if (window.location.href.includes('/s/')) {
+if (window.location.href.includes("/s/")) {
     // Handle comic page
     EhViewer('s');
-} else if (window.location.href.includes('/mpv/')) {
+} else if (window.location.href.includes("/mpv/")) {
     // Handle multi page mode
     EhViewer('mpv');
-} else if (window.location.href.includes('/g/')) {
+} else if (window.location.href.includes("/g/")) {
     // Handle gallery page
     addNewStyle('input{margin:2px 2px!important;}');
     filterForGallery();
 } else if (document.getElementById('searchbox') !== null) {
     // Add tag management feature to searchbox
     addNewStyle('input{margin:2px 2px!important;}');
-    addFilter(document.getElementsByClassName('nopm')[0]);
+    addFilter(document.getElementsByClassName("nopm")[0]);
 }
 
 function initScript() {
@@ -213,13 +208,13 @@ function addFilter(boxPos) {
     }
 
     function newTag(e) {
-        var tagStr = window.prompt("Add filter like format below", "[tag] or [name@tag] or [name@tag+tag+tag+tag]").split("@");
+        var tagStr = window.prompt('Add filter like format below', '[tag] or [name@tag] or [name@tag+tag+tag+tag]').split('@');
         if (tagStr.length == 1 && tagStr[0] != '') {
             // custom_filter.push({'name':tagStr[0], 'tags':tagStr});
             custom_filter[tagStr[0]] = tagStr;
         } else if (tagStr.length == 2) {
             var tags = tagStr[1].split('+');
-            // custom_filter.push({'name':tagStr[0], 'tag':tags});
+            // custom_filter.push({'name':tagStr[0], 'tag':tags}); 
             custom_filter[tagStr[0]] = tags;
         } else {
             window.alert("Invalid input... :(");
@@ -246,19 +241,19 @@ function EhViewer(mode) {
     }
     float_btn[0].setAttribute("class", "float_btn zoom_in");
     float_btn[1].setAttribute("class", "float_btn zoom_out");
-    float_btn[0].innerText = "➕";
-    float_btn[1].innerText = "➖";
+    float_btn[0].innerText = '+';
+    float_btn[1].innerText = '-';
     // zoomIn/Out -> setScale -> s/mpv
     float_btn[0].addEventListener('mousedown', zoomIn, false);
     float_btn[1].addEventListener('mousedown', zoomOut, false);
     document.addEventListener('mouseup', function() { clearInterval(zoomInterval); });
     if (mode == 's') {
-        var oldSi = 'si';
+        var oldSi = si;
         var firstPage = document.getElementsByClassName("sn")[0].firstChild.href;
         var lastPage = document.getElementsByClassName("sn")[0].lastChild.href;
         setScale = s;
         // add extra btn for this mode
-        for (var i_1 = 2; i_1 < 5; i_1++) {
+        for (var i = 2; i < 5; i++) {
             float_btn[i] = document.createElement("li");
             float_list.appendChild(float_btn[i]);
         }
@@ -272,7 +267,8 @@ function EhViewer(mode) {
         float_btn[3].addEventListener('click', nextPage, false);
         float_btn[4].setAttribute("onclick", "window.open(document.getElementsByClassName('sb')[0].firstChild.href,'_self');");
         document.addEventListener("keydown", keyDown);
-        setNewPage(); // initial when user enter comic page from elsewhere;
+        //Initial when user enter comic page from elsewhere
+        setNewPage();
     } else if (mode == 'mpv') {
         setScale = mpv;
         addNewStyle("#pane_images_inner>div{margin:auto;}", "img-center-align");
@@ -373,7 +369,7 @@ function EhViewer(mode) {
 
     function setNewPage() {
         var listenChange = setInterval(function() {
-            if ((oldSi != 'si') || isFirstRun) {
+            if ((oldSi != si) || isFirstRun) {
                 isFirstRun = false;
                 var newStyle = 'h1, #i2, #i5, #i6, #i7, .ip, .sn{display:none!important;} ::-webkit-scrollbar{display:none;}';
                 addNewStyle(newStyle);
@@ -398,7 +394,7 @@ function EhViewer(mode) {
                 height *= current_scale;
                 pic.style.width = width + "px";
                 pic.style.height = height + "px";
-                oldSi = 'si';
+                oldSi = si;
                 clearInterval(listenChange);
             }
         }, 200);
