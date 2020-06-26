@@ -1,31 +1,26 @@
 // ==UserScript==
-// @name ExHentai Viewer
-// @namespace Violentmonkey Scripts
-// @description manage your favorite tags, enhance searching, improve comic page
-// @match *://exhentai.org/*
-// @match *://e-hentai.org/*
-// @grant       GM_setValue
-// @grant       GM_getValue
-// @version 0.41
+// @name         EH Viewer
+// @author       Illya
+// @namespace    Violentmonkey Scripts
+// @version      1.0.0
+// @description  Manage your favorite tags, enhance searching, improve comic page
+// @icon         https://e-hentai.org/favicon.ico
+// @include      *://exhentai.org/*
+// @include      *://e-hentai.org/*
+// @grant        GM_setValue
+// @grant        GM_getValue
+// @run-at       document-end
 // ==/UserScript==
-// version info:
-// 0.40: 
-//     1. improve btn style;
-//     2. tag value were saved as list instead of string;
-//     3. add support for add / search / delete a set of tags by one name.
-//     4. add zoomIn / zoomOut btn to MPV.
-//0.41:
-//     1. add center align for mpv mode.
 
-var custom_filter = GM_getValue('custom_filter', -1);
+var custom_filter = getValue('custom_filter', -1);
 initScript();
-if (window.location.href.includes("/s/")) {
+if (window.location.href.includes('/s/')) {
     // Handle comic page
     EhViewer('s');
-} else if (window.location.href.includes("/mpv/")) {
+} else if (window.location.href.includes('/mpv/')) {
     // Handle multi page mode
     EhViewer('mpv');
-} else if (window.location.href.includes("/g/")) {
+} else if (window.location.href.includes('/g/')) {
     // Handle gallery page
     addNewStyle('input{margin:2px 2px!important;}');
     filterForGallery();
@@ -36,32 +31,10 @@ if (window.location.href.includes("/s/")) {
 }
 
 function initScript() {
-    var script_config = GM_getValue('script_config', {});
-    if (script_config.currentVersion == undefined) {
-        script_config.currentVersion = '0.40';
-        if (custom_filter == -1) {
-            custom_filter = {};
-        } else {
-            updateTo040();
-        }
-    }
-    GM_setValue('custom_filter', custom_filter);
-    GM_setValue('script_config', script_config);
-
-    function updateTo040() {
-        script_config.oldVersionData = [];
-        script_config.oldVersionData.push({ '0.37': [custom_filter] });
-        var new_custom_filter = {};
-        custom_filter.forEach(function(v, i, a) {
-            // Handle wrong values in custom filter
-            if (v == undefined || v.tag == undefined || v.name == undefined) {
-                a.splice(i, 1);
-            } else {
-                // save tags to list instead of str
-                new_custom_filter[a[i].name] = a[i].tag.split("+");
-            }
-        });
-        custom_filter = new_custom_filter;
+    setValue('custom_filter', custom_filter);
+    if (getValue('user_width') || getValue('user_height')) {
+        addNewStyle('width: ' + getValue('user_width')+';', 'img');
+        addNewStyle('height: ' + getValue('user_height')+';', 'img');
     }
 }
 
@@ -101,7 +74,8 @@ function filterForGallery() {
             e.target.innerText = 'show filter'
         }
     })
-    for (var i = 0; i < document.all.length; i++) {
+    var i;
+    for (i = 0; i < document.all.length; i++) {
         if (document.all[i].id.slice(0, 3) === 'ta_') {
             document.all[i].addEventListener('contextmenu', addGalleryTag, false);
         }
@@ -166,7 +140,8 @@ function addFilter(boxPos) {
 
     function tagsExist(tags) {
         var exist = true;
-        for (var i = 0; i < tags.length; i++) {
+        var i;
+        for (i = 0; i < tags.length; i++) {
             if (search_box.value.includes(tags[i])) {;
             } else {
                 exist = false;
@@ -202,7 +177,7 @@ function addFilter(boxPos) {
         if (window.confirm('Delete this tag?') == true) {
             var tagName = e.target.value;
             delete custom_filter[tagName];
-            GM_setValue('custom_filter', custom_filter);
+            setValue('custom_filter', custom_filter);
             addFilter(e.target.parentElement.parentElement);
         }
     }
@@ -217,9 +192,9 @@ function addFilter(boxPos) {
             // custom_filter.push({'name':tagStr[0], 'tag':tags}); 
             custom_filter[tagStr[0]] = tags;
         } else {
-            window.alert("Invalid input... :(");
+            window.alert('Invalid input... :(');
         }
-        GM_setValue('custom_filter', custom_filter);
+        setValue('custom_filter', custom_filter);
         addFilter(e.target.parentElement.parentElement);
     }
 }
@@ -231,16 +206,17 @@ function EhViewer(mode) {
     var current_scale = 1;
     var zoomInterval;
     var setScale;
-    var float_list = document.createElement("ul");
-    float_list.setAttribute("class", "float_list");
+    var float_list = document.createElement('ul');
+    float_list.setAttribute('class', 'float_list');
     document.body.appendChild(float_list);
     var float_btn = new Array([]);
-    for (var i = 0; i < 2; i++) {
-        float_btn[i] = document.createElement("li");
+    var i;
+    for (i = 0; i < 2; i++) {
+        float_btn[i] = document.createElement('li');
         float_list.appendChild(float_btn[i]);
     }
-    float_btn[0].setAttribute("class", "float_btn zoom_in");
-    float_btn[1].setAttribute("class", "float_btn zoom_out");
+    float_btn[0].setAttribute('class', "float_btn zoom_in");
+    float_btn[1].setAttribute('class', "float_btn zoom_out");
     float_btn[0].innerText = '+';
     float_btn[1].innerText = '-';
     // zoomIn/Out -> setScale -> s/mpv
@@ -248,12 +224,18 @@ function EhViewer(mode) {
     float_btn[1].addEventListener('mousedown', zoomOut, false);
     document.addEventListener('mouseup', function() { clearInterval(zoomInterval); });
     if (mode == 's') {
-        var oldSi = si;
+        var oldSi;
+        if (typeof si !== 'undefined') {
+            oldSi = si;
+        } else {
+            var si;
+            oldSi = false;
+        }
         var firstPage = document.getElementsByClassName("sn")[0].firstChild.href;
         var lastPage = document.getElementsByClassName("sn")[0].lastChild.href;
         setScale = s;
         // add extra btn for this mode
-        for (var i = 2; i < 5; i++) {
+        for (i = 2; i < 5; i++) {
             float_btn[i] = document.createElement("li");
             float_list.appendChild(float_btn[i]);
         }
@@ -369,13 +351,13 @@ function EhViewer(mode) {
 
     function setNewPage() {
         var listenChange = setInterval(function() {
-            if ((oldSi != si) || isFirstRun) {
+            if ((oldSi == false) || isFirstRun) {
                 isFirstRun = false;
                 var newStyle = 'h1, #i2, #i5, #i6, #i7, .ip, .sn{display:none!important;} ::-webkit-scrollbar{display:none;}';
                 addNewStyle(newStyle);
                 var pic = document.getElementById("img");
-                var width = Number(pic.style.width.replace("px", ""));
-                var height = Number(pic.style.height.replace("px", ""));
+                var width = Number(pic.style.width.replace('px', ""));
+                var height = Number(pic.style.height.replace('px', ""));
                 var page = document.getElementsByTagName('span');
                 var footMark = document.getElementById('i4').firstChild;
                 var currentPage = page[0].innerText;
@@ -392,9 +374,14 @@ function EhViewer(mode) {
                 }
                 width *= current_scale;
                 height *= current_scale;
-                pic.style.width = width + "px";
-                pic.style.height = height + "px";
-                oldSi = si;
+                pic.style.width = width + 'px';
+                pic.style.height = height + 'px';
+                var oldSi;
+                if (typeof si !== 'undefined') {
+                    oldSi = si;
+                } else {
+                    oldSi = false;
+                }
                 clearInterval(listenChange);
             }
         }, 200);
@@ -405,7 +392,7 @@ function EhViewer(mode) {
         if (window.location.href !== firstPage) {
             document.getElementById('prev').onclick();
         } else {
-            window.alert("The first page (⊙_⊙)")
+            window.alert('The first page (⊙_⊙)')
         }
         setNewPage();
     }
@@ -415,7 +402,7 @@ function EhViewer(mode) {
         if (window.location.href !== lastPage) {
             document.getElementById('next').onclick();
         } else {
-            window.alert("The last page (⊙ω⊙)")
+            window.alert('The last page (⊙ω⊙)')
         }
         setNewPage();
     }
@@ -437,18 +424,18 @@ function EhViewer(mode) {
     }
 
     function s(cmd) {
-        var pic = document.getElementById("img");
-        var width = Number(pic.style.width.replace("px", ""));
-        var height = Number(pic.style.height.replace("px", ""));
+        var pic = document.getElementById('img');
+        var width = Number(pic.style.width.replace('px', ""));
+        var height = Number(pic.style.height.replace('px', ""));
         switch (cmd) {
             case 'zoomIn':
                 {
-                    var max_width = Number(pic.style.maxWidth.replace("px", ""));
+                    var max_width = Number(pic.style.maxWidth.replace('px', ""));
                     if (width < max_width) {
                         width *= 1.1;
                         height *= 1.1;
                         current_scale *= 1.1;
-                    } else {}
+                    }
                     break;
                 }
             case 'zoomOut':
@@ -457,19 +444,21 @@ function EhViewer(mode) {
                         width /= 1.1;
                         height /= 1.1;
                         current_scale /= 1.1;
-                    } else {}
+                    }
                     break;
                 }
         }
-        pic.style.width = Math.round(width) + "px";
-        pic.style.height = Math.round(height) + "px";
+        pic.style.width = Math.round(width) + 'px';
+        pic.style.height = Math.round(height) + 'px';
+        setValue('user_width', pic.style.width, true);
+        setValue('user_height', pic.style.height, true);
     }
 
     function mpv(cmd) {
         var mpvStyle = 'img[id^="imgsrc"], div[id^="image"]{width:mpvWidth!important;height:auto!important; max-width:100%!important;}"';
-        var max_width = Number(document.getElementById('pane_images').style.width.replace("px", "")) - 20;
+        var max_width = Number(document.getElementById('pane_images').style.width.replace('px', "")) - 20;
         var min_width = 200;
-        var original_width = Number(document.getElementById('image_1').style.maxWidth.replace("px", ""));
+        var original_width = Number(document.getElementById('image_1').style.maxWidth.replace('px', ""));
         var current_width = original_width * current_scale;
         switch (cmd) {
             case 'zoomIn':
@@ -489,6 +478,61 @@ function EhViewer(mode) {
                     break;
                 }
         }
-        addNewStyle(mpvStyle.replace("mpvWidth", current_width + "px"));
+        addNewStyle(mpvStyle.replace('mpvWidth', current_width + 'px'));
+    }
+}
+
+//Set value
+function setValue(item, value, local = false) {
+    if (typeof GM_setValue === 'undefined' || local === true) {
+        window.localStorage[item] = (typeof value === 'string') ? value : JSON.stringify(value);
+    } else {
+        GM_setValue(item, value);
+    }
+}
+
+//Get value
+function getValue(item, toJSON, local = false) {
+    if (typeof GM_getValue === 'undefined' || ! GM_getValue(item, null) || local === true) {
+        return (item in window.localStorage) ? ((toJSON) ? JSON.parse(window.localStorage[item]) : window.localStorage[item]) : null;
+    } else {
+        return GM_getValue(item, null);
+    }
+}
+
+//Delete value
+function deleteValue(item) {
+    if (typeof item === 'string') {
+        if (typeof GM_deleteValue === 'undefined') {
+            window.localStorage.removeItem(item);
+        } else {
+            GM_deleteValue(item);
+        }
+    } else if (typeof item === 'number') {
+        if (item === 0) {
+            deleteValue('disabled');
+        } else if (item === 1) {
+            deleteValue('roundNow');
+            deleteValue('roundAll');
+            deleteValue('monsterStatus');
+        } else if (item === 2) {
+            deleteValue('roundType');
+            deleteValue('battleCode');
+            deleteValue(0);
+            deleteValue(1);
+        }
+    }
+}
+
+//Get element
+function getElem(ele, mode, parent) {
+    if (typeof ele === 'object') {
+        return ele
+    } else if (mode === undefined && parent === undefined) {
+        return (isNaN(ele * 1)) ? document.querySelector(ele) : document.getElementById(ele)
+    } else if (mode === 'all') {
+        return (parent === undefined) ? document.querySelectorAll(ele) : parent.querySelectorAll(ele)
+    } else if (typeof mode === 'object' && parent === undefined) {
+        return mode.querySelector(ele)
     }
 }
