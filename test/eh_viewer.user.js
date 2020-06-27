@@ -7,13 +7,14 @@
 // @icon         https://e-hentai.org/favicon.ico
 // @include      *://exhentai.org/*
 // @include      *://e-hentai.org/*
-// @grant        GM_setValue
-// @grant        GM_getValue
 // @run-at       document-end
 // ==/UserScript==
 
 var custom_filter = getValue('custom_filter', -1);
 initScript();
+(function(){
+    getElem('#img').style.width = getValue('user_width');
+})
 if (window.location.href.includes('/s/')) {
     // Handle comic page
     EhViewer('s');
@@ -372,10 +373,20 @@ function EhViewer(mode) {
                 } else {
                     footMark.innerHTML += 'No download';
                 }
-                width *= current_scale;
-                height *= current_scale;
-                pic.style.width = width + 'px';
-                pic.style.height = height + 'px';
+                if (getValue('user_width')) {
+                    width = getValue('user_width');
+                } else {
+                    width *= current_scale;
+                    width += 'px';
+                }
+                if (getValue('user_height')) {
+                    height = getValue('user_height');
+                } else {
+                    height *= current_scale;
+                    height += 'px';
+                }
+                pic.style.width = width;
+                pic.style.height = height;
                 var oldSi;
                 if (typeof si !== 'undefined') {
                     oldSi = si;
@@ -384,7 +395,7 @@ function EhViewer(mode) {
                 }
                 clearInterval(listenChange);
             }
-        }, 200);
+        }, 500);
     }
 
     function prevPage(e) {
