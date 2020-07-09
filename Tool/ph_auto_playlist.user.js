@@ -10,7 +10,8 @@
 
 (function() {
     'use strict';
-    var add_url = 'https://www.pornhub.com/playlist/add?type=playlist&playlist_id=139768032&vkey=';
+    var playlist_id = '123456';
+    var add_url = 'https://www.pornhub.com/playlist/add?type=playlist&';
     var get_vid;
     var get_token;
     var get_view_key;
@@ -18,7 +19,7 @@
     if ((typeof TOP_BODY) != undefined) {
         get_token = TOP_BODY.token;
         get_view_key = getURLParam(window.location.href, 'viewkey');
-        get_vid = get_view_key+'&token='+get_token;
+        get_vid = 'playlist_id='+playlist_id+'&vkey='+get_view_key+'&token='+get_token;
         set_url = add_url+get_vid;
         reportInfo(set_url);
         post(set_url, function(data) {
