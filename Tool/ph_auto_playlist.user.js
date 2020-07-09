@@ -1,34 +1,54 @@
 // ==UserScript==
 // @name         [PH] Auto Add List
 // @namespace    https://carry0987.github.io/
-// @version      1.0.0
+// @version      1.1.0
 // @description  Automatically add video to Playlist
 // @author       carry0987
 // @match        https://www.pornhub.com/view_video.php*
 // @grant        none
 // ==/UserScript==
 
+var get_vid;
+var get_token;
+var get_view_key;
+var set_url;
+var playlist_id = '123456';
+var add_url = 'https://www.pornhub.com/playlist/add?type=playlist&';
+
 (function() {
     'use strict';
-    var playlist_id = '123456';
-    var add_url = 'https://www.pornhub.com/playlist/add?type=playlist&';
-    var get_vid;
-    var get_token;
-    var get_view_key;
-    var set_url;
-    if ((typeof TOP_BODY) != undefined) {
-        get_token = TOP_BODY.token;
-        get_view_key = getURLParam(window.location.href, 'viewkey');
-        get_vid = 'playlist_id='+playlist_id+'&vkey='+get_view_key+'&token='+get_token;
-        set_url = add_url+get_vid;
-        reportInfo(set_url);
-        post(set_url, function(data) {
-            reportInfo(data)
-        });
-    } else {
-        get_vid = false;
-    }
+    init();
 })();
+
+//Set HotKeyListener
+function injectHotkeyListener() {
+    document.addEventListener('keypress', hotkeyHandler);
+}
+
+//Handles keypresses
+function hotkeyHandler(e) {
+    let key = e.which;
+    let char = String.fromCharCode(key);
+    if (char == 'F' || e.keyCode == 75) {
+        if ((typeof TOP_BODY) != undefined) {
+            get_token = TOP_BODY.token;
+            get_view_key = getURLParam(window.location.href, 'viewkey');
+            get_vid = 'playlist_id='+playlist_id+'&vkey='+get_view_key+'&token='+get_token;
+            set_url = add_url+get_vid;
+            reportInfo(set_url);
+            post(set_url, function(data) {
+                reportInfo(data)
+            });
+        } else {
+            get_vid = false;
+        }
+    }
+}
+
+//Initialize
+function init() {
+    injectHotkeyListener();
+}
 
 //Get URL parameter
 function getURLParam(url, param) {
@@ -94,6 +114,18 @@ function getElem(ele, mode, parent) {
     } else if (typeof mode === 'object' && parent === undefined) {
         return mode.querySelector(ele)
     }
+}
+
+//Create element
+function createElem(name, elemID = false, elemClass = false) {
+    var elem = document.createElement(name);
+    if (elemID != false) {
+        elem.setAttribute('id', elemID);
+    }
+    if (elemClass != false) {
+        elem.className = elemClass;
+    }
+    return elem
 }
 
 //Report info in console
