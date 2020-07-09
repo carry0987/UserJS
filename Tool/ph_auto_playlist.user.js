@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         [PH] Auto Add List
 // @namespace    https://carry0987.github.io/
-// @version      1.1.0
+// @version      1.2.0
 // @description  Automatically add video to Playlist
 // @author       carry0987
 // @match        https://www.pornhub.com/view_video.php*
@@ -29,7 +29,7 @@ function injectHotkeyListener() {
 function hotkeyHandler(e) {
     let key = e.which;
     let char = String.fromCharCode(key);
-    if (char == 'F' || e.keyCode == 75) {
+    if (char == 'F' || e.keyCode == 75 || char == 'f' || e.keyCode == 70) {
         if ((typeof TOP_BODY) != undefined) {
             get_token = TOP_BODY.token;
             get_view_key = getURLParam(window.location.href, 'viewkey');
