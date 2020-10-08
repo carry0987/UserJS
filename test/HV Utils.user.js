@@ -4,8 +4,10 @@
 // @version        2.8.2
 // @date           2020-10-01
 // @author         sssss2
-// @include        https://hentaiverse.org/*
-// @include        http://hentaiverse.org/*
+// @include        https://hentaiverse.org/?s=Bazaar&ss=ss*
+// @include        https://hentaiverse.org/?s=Character&ss=eq*
+// @include        https://hentaiverse.org/?s=Battle&ss=gr*
+// @include        https://hentaiverse.org/?s=Bazaar&ss=mm*
 // @include        http://alt.hentaiverse.org/*
 // @include        https://e-hentai.org/*
 // @connect        e-hentai.org
