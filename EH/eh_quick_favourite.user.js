@@ -3,7 +3,7 @@
 // @author       carry0987
 // @namespace    https://github.com/carry0987
 // @support      https://github.com/carry0987/UserJS/issues
-// @version      1.2.5
+// @version      1.2.6
 // @description  Upgrades the gallery favourite button to allow quick favouriting of a gallery
 // @icon         https://carry0987.github.io/favicon.png
 // @include      /^https?://(ex|(?:g\.)?e-)hentai\.org/g/\d+?/\w{10}/?/
@@ -587,7 +587,7 @@ function favnoteClick() {
 // Adds keypress event listener
 function injectHotkeyListener() {
     document.addEventListener('keypress', hotkeyHandler);
-    var archive = document.getElementsByClassName('g2 gsp');
+    var archive = document.getElementsByClassName('g2');
     archive[0].children[1].addEventListener('click', touchHandler);
     //document.getElementById("div").addEventListener("touchmove", touchHandler, false);
     //document.getElementById("div").addEventListener("touchend", touchHandler, false);
