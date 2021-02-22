@@ -29,12 +29,12 @@ function reportInfo(vars, showType = false) {
     console.log(vars);
 }
 
-//Set value via localSorage
+//Set value via localStorage
 function setValue(item, value) {
     window.localStorage[item] = (typeof value === 'string') ? value : JSON.stringify(value);
 }
 
-//Get value via localSorage
+//Get value via localStorage
 function getValue(item, toJSON) {
     return (window.localStorage[item]) ? ((toJSON) ? JSON.parse(window.localStorage[item]) : window.localStorage[item]) : null;
 }
